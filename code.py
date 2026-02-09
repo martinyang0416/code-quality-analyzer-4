@@ -1,14 +1,20 @@
-def findMedianSortedArrays(nums1, nums2):
-    # Ensure nums1 is the smaller array to minimize binary search steps
-    if len(nums1) > len(nums2):
-        nums1, nums2 = nums2, nums1
-    m, n = len(nums1), len(nums2)
-    low, high = 0, m
-    total = m + n
-    half = (total + 1) // 2  # Correctly compute the half for partitioning
-    
-    while low <= high:
-        i = (low + high) // 2  # Partition point in nums1
-        j = half - i           # Corresponding partition point in nums2
+def longestPalindrome(s):
+    if not s:
+        return ""
+    start = 0
+    end = 0
+    n = len(s)
+    for i in range(n):
+        # Check for odd length palindromes
+        l, r = i, i
+        while l >= 0 and r < n and s[l] == s[r]:
+            l -= 1
+            r += 1
+        current_len = r - l - 1
+        if current_len > end - start:
+            start = l + 1
+            end = r - 1
         
-   
+        # Check for even length palindromes
+        l, r = i, i + 1
+        while l >= 0 and r < n 
