@@ -1,21 +1,16 @@
-import sys
-
-MOD = 10**9 + 7
-
-def main():
-    Q = int(sys.stdin.readline())
-    for _ in range(Q):
-        M = int(sys.stdin.readline())
-        B = list(map(int, sys.stdin.readline().split()))
-        
-        existing_dests = set()
-        dest_freq = {}
-        invalid = False
-        
-        for idx in range(M):
-            val = B[idx]
-            if val != 0:
-                player = idx + 1
-                if val == player:
-                    invalid = True
-                if val < 1 or 
+t = int(input())
+for _ in range(t):
+    n = input().strip()
+    summands = []
+    length = len(n)
+    for i in range(length):
+        d = int(n[i])
+        if d != 0:
+            power = 10 ** (length - 1 - i)
+            summand = d * power
+            summands.append(summand)
+    print(len(summands))
+    if summands:
+        print(' '.join(map(str, summands)))
+    else:
+        print()
