@@ -1,23 +1,21 @@
-n = int(input())
-s = input().strip()
+import sys
 
-if n == 0:
-    print("")
-    exit()
+class FenwickTree:
+    def __init__(self, size):
+        self.n = size
+        self.tree = [0] * (self.n + 1)  # 1-based indexing
 
-result = []
-current_char = s[0]
-count = 1
+    def update_point(self, idx, delta):
+        while idx <= self.n:
+            self.tree[idx] += delta
+            idx += idx & -idx
 
-for i in range(1, n):
-    if s[i] == current_char:
-        count += 1
-    else:
-        # Process the current run
-        if current_char in {'a', 'e', 'i', 'o', 'u', 'y'}:
-            if current_char in {'e', 'o'}:
-                if count == 2:
-                    result.append(current_char * 2)
-                else:
-                    result.append(current_char)
-            e
+    def query_prefix(self, idx):
+        res = 0
+        while idx > 0:
+            res += self.tree[idx]
+            idx -= idx & -idx
+        return res
+
+    def range_query(self, l, r):
+        return self.query_prefix
