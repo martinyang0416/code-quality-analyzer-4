@@ -1,19 +1,26 @@
-class DSU:
-    def __init__(self):
-        self.parent = {}
+def main():
+    import sys
+    input = sys.stdin.read().split()
+    ptr = 0
+    N = int(input[ptr])
+    ptr +=1
+    M = int(input[ptr])
+    ptr +=1
     
-    def find(self, x):
-        if x not in self.parent:
-            self.parent[x] = x
-            return x
-        while self.parent[x] != x:
-            self.parent[x] = self.parent[self.parent[x]]  # Path compression
-            x = self.parent[x]
-        return x
+    D = []
+    for _ in range(N):
+        D.append(int(input[ptr]))
+        ptr +=1
     
-    def union(self, x, y):
-        x_root = self.find(x)
-        y_root = self.find(y)
-        if x_root == y_root:
-            return
-        self.parent[y_root]
+    T = []
+    for _ in range(M):
+        T.append(int(input[ptr]))
+        ptr +=1
+    
+    INF = float('inf')
+    dp = [[INF] * (M + 1) for _ in range(N + 1)]
+    dp[0][0] = 0
+    
+    for j in range(1, M + 1):
+        for i in range(N + 1):
+            # 
