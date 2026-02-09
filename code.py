@@ -1,16 +1,22 @@
-import sys
-from bisect import bisect_right
-
 def main():
-    sys.setrecursionlimit(1 << 25)
-    t = sys.stdin.readline().strip()
-    N = len(t)
-    U = int(sys.stdin.readline())
+    import sys
+    input = sys.stdin.read().split()
+    idx = 0
+    t = input[idx]
+    idx += 1
+    U = int(input[idx])
+    idx += 1
     updates = []
     for _ in range(U):
-        p, c = sys.stdin.readline().split()
-        p = int(p) - 1  # converting to 0-based index
+        p = int(input[idx])-1  # converting to 0-based
+        c = input[idx+1]
         updates.append((p, c))
-    
-    # We need to compute the sum A(t) initially, and then after each update.
-    # To handle this, we can track the current state of the string and c
+        idx +=2
+
+    def compute_count(s):
+        T = ['b', 'e', 's', 's', 'i', 'e']
+        n = len(s)
+        count = [0]*(n)
+        current_ptr = 0
+        current_count = 0
+        for i in range(n)
