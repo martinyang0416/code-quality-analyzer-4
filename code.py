@@ -1,18 +1,11 @@
-M, N = map(int, input().split())
-diff = [0] * (M + 2)  # 1-based indexing, size M+2
+n = int(input())
+a = list(map(int, input().split()))
+min_candidate = None
 
-for _ in range(N):
-    A, B, C = map(int, input().split())
-    diff[A] += C
-    if B + 1 <= M:
-        diff[B + 1] -= C
+for x in range(1, 1001):
+    temp = a + [x]
+    temp_sorted = sorted(temp)
+    if min_candidate is None or temp_sorted < min_candidate:
+        min_candidate = temp_sorted.copy()
 
-max_height = 0
-current = 0
-
-for i in range(1, M + 1):
-    current += diff[i]
-    if current > max_height:
-        max_height = current
-
-print(max_height)
+print(' '.join(map(str, min_candidate)))
