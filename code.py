@@ -1,16 +1,20 @@
-n = int(input())
-typedefs = {}
+import sys
 
-for _ in range(n):
-    parts = input().strip().split()
-    if parts[0] == 'typedef':
-        A, B = parts[1], parts[2]
-        base_name = ''.join([c for c in A if c not in '*&'])
-        modifiers = [c for c in A if c in '*&']
-        num_stars = modifiers.count('*')
-        num_amps = modifiers.count('&')
-        
-        if base_name == 'void':
-            current_base, current_ptr = 'void', 0
-        elif base_name == 'errtype':
-            current_base, curre
+def main():
+    input = sys.stdin.read().split()
+    idx = 0
+    T = int(input[idx])
+    idx += 1
+    for _ in range(T):
+        N = int(input[idx])
+        idx +=1
+        nums = list(map(int, input[idx:idx+N]))
+        idx +=N
+        total = sum(nums)
+        if total % 2 == 0:
+            print("Yes")
+        else:
+            print("No")
+
+if __name__ == "__main__":
+    main()
