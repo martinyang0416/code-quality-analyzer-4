@@ -1,14 +1,20 @@
-import math
+import sys
 
 def main():
-    import sys
     input = sys.stdin.read().split()
-    T = int(input[0])
-    for i in range(1, T + 1):
-        N = int(input[i])
-        m = N + 1
-        d = math.gcd(m, 4)
-        print((4 * N) // d)
-
-if __name__ == "__main__":
-    main()
+    ptr = 0
+    T = int(input[ptr])
+    ptr += 1
+    for _ in range(T):
+        N, K = int(input[ptr]), int(input[ptr+1])
+        ptr += 2
+        count = [0] * (K + 1)
+        all_ingredients = set()
+        ingredients_list = []
+        for _ in range(N):
+            Pi = int(input[ptr])
+            ptr += 1
+            ings = list(map(int, input[ptr:ptr+Pi]))
+            ptr += Pi
+            ings_set = set(ings)
+            ingredi
