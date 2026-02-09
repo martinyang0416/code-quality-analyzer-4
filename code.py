@@ -1,12 +1,22 @@
 import sys
 
 def main():
-    T = int(sys.stdin.readline())
+    input = sys.stdin.read
+    data = input().split()
+    idx = 0
+    T = int(data[idx])
+    idx += 1
     for _ in range(T):
-        n = sys.stdin.readline().strip()
-        total = sum(int(c) for c in n)
-        check = (10 - (total % 10)) % 10
-        print(n + str(check))
-
-if __name__ == "__main__":
-    main()
+        N = int(data[idx])
+        idx += 1
+        W = list(map(int, data[idx:idx+N]))
+        idx += N
+        max_val = max(W)
+        s = N // 2
+        max_positions = [i for i in range(N) if W[i] == max_val]
+        intervals = []
+        for m in max_positions:
+            a = (N - m) % N
+            end = a + s - 1
+            if end < N:
+  
