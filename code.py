@@ -1,9 +1,1 @@
-a = int(input())
-weights = [1, 2, 23, 24, 25, 47]
-binary_str = format(a, '06b')
-total = 0
-for i in range(6):
-    if binary_str[i] == '1':
-        bit_num = 5 - i
-        total += weights[bit_num]
-print(total)
+Okay, let's see. The problem is to take an input integer a between 1 and 30 and output another integer. The example given is input 3 outputs 27. Hmm, wait, 3 cubed is 27. So maybe the task is to compute a cubed? That seems straightforward. But let me think again. Are there any other possibilities? Like maybe a factorial or something else? Let's check the example again. 3 factorial is 6, which is not 27. So cubing makes sense here. So the output is a multiplied by itself three times. So the formu
