@@ -1,22 +1,26 @@
-n = int(input())
-concerts = []
-for _ in range(n):
-    a, b = map(int, input().split())
-    concerts.append((a, b))
+import bisect
 
-# Sort by scheduled date (a_i)
-concerts.sort()
-
-prev = 0
-last_day = 0
-for a, b in concerts:
-    current = max(prev, b)
-    # Ensure current does not exceed a_i
-    if current > a:
-        current = a
-    if current < prev:
-        current = prev  # Ensure non-decreasing
-    last_day = current
-    prev = current
-
-print(last_day)
+def main():
+    import sys
+    input = sys.stdin.read
+    data = input().split()
+    idx = 0
+    M = int(data[idx])
+    idx += 1
+    D = int(data[idx])
+    idx += 1
+    
+    sites = []
+    for _ in range(M):
+        r = int(data[idx])
+        p = int(data[idx + 1])
+        sites.append((r, p))
+        idx += 2
+    
+    # Sort the sites based on position
+    sites.sort(key=lambda x: x[1])
+    
+    p_list = [p for (r, p) in sites]
+    r_list = [r for (r, p) in sites]
+    
+    # Comp
