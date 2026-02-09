@@ -1,14 +1,17 @@
-n = int(input())
-a = list(map(int, input().split()))
-from collections import defaultdict
+n, m = map(int, input().split())
+x = int(input())
+count = 0
 
-counts = defaultdict(int)
-for num in a:
-    bits = bin(num).count('1')
-    counts[bits] += 1
+for i in range(n):
+    for j in range(m):
+        if (i + j) % 2 != 0:
+            continue
+        a = i
+        b = j
+        c = (n - 1) - i
+        d = (m - 1) - j
+        t = min(a, b, c, d)
+        if t + 1 == x:
+            count += 1
 
-result = 0
-for c in counts.values():
-    result += c * (c - 1) // 2
-
-print(result)
+print(count)
