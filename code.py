@@ -1,19 +1,9 @@
 a = int(input())
-bits = [0] * 6
+weights = [1, 2, 23, 24, 25, 47]
+binary_str = format(a, '06b')
+total = 0
 for i in range(6):
-    bits[i] = (a >> i) & 1
-
-new_bits = [
-    bits[3],  # output0
-    bits[1],  # output1
-    bits[4],  # output2
-    bits[2],  # output3
-    bits[0],  # output4
-    bits[5],  # output5
-]
-
-result = 0
-for i in range(6):
-    result += new_bits[i] << i
-
-print(result)
+    if binary_str[i] == '1':
+        bit_num = 5 - i
+        total += weights[bit_num]
+print(total)
