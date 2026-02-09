@@ -1,23 +1,20 @@
 import sys
-import bisect
 from collections import deque
 
 def main():
     sys.setrecursionlimit(1 << 25)
-    N = int(sys.stdin.readline())
+    N = int(sys.stdin.readline().strip())
     s = sys.stdin.readline().strip()
-    adj = [[] for _ in range(N+1)]
+    edges = [[] for _ in range(N+1)]
     for _ in range(N-1):
         a, b = map(int, sys.stdin.readline().split())
-        adj[a].append(b)
-        adj[b].append(a)
+        edges[a].append(b)
+        edges[b].append(a)
     
-    cows = []
-    for i in range(N):
-        if s[i] == '1':
-            cows.append(i+1)
-    total_C = len(cows)
-    if total_C == 0:
+    cows = [i+1 for i in range(N) if s[i] == '1']
+    T = len(cows)
+    if T == 0:
+        print("No solution")
         return
-
-    # 
+    
+    # Compute all pairwis
