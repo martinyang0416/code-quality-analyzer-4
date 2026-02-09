@@ -1,21 +1,24 @@
 import sys
+from math import gcd
+from functools import lru_cache
 
-class FenwickTree:
-    def __init__(self, size):
-        self.n = size
-        self.tree = [0] * (self.n + 1)  # 1-based indexing
+@lru_cache(maxsize=None)
+def compute_steps(a, b):
+    if a == 0 or b == 0:
+        return 0
+    d = gcd(a - 1, b - 1)
+    new_a = (a - 1) // d
+    new_b = (b - 1) // d
+    return 1 + compute_steps(new_a, new_b)
 
-    def update_point(self, idx, delta):
-        while idx <= self.n:
-            self.tree[idx] += delta
-            idx += idx & -idx
-
-    def query_prefix(self, idx):
-        res = 0
-        while idx > 0:
-            res += self.tree[idx]
-            idx -= idx & -idx
-        return res
-
-    def range_query(self, l, r):
-        return self.query_prefix
+T = int(sys.stdin.readline())
+for _ in range(T):
+    parts = sys.stdin.readline().strip().split()
+    x = int(parts[0])
+    y = int(parts[1])
+    starter = parts[2]
+    
+    g = gcd(x, y)
+    a = x // g
+    b = y // g
+    
