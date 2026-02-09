@@ -1,21 +1,31 @@
-class House:
-    c = 0
+def nod(a,b):
+    while a*b!=0:
+        if a>b:
+            a%=b
+        else:
+            b%=a
+    return a+b
+n,m=map(int,input().split())
+l=[int(j) for j in input().split()]
+p=[int(j) for j in input().split()]
 
-    def __init__(self, val):
-        self.id = House.c + 1
-        self.val = int(val)
-        House.c += 1
+nd=l[1]-l[0]
+ans=-1
+for i in range(2,n):
 
-n = int(input())
-a = list(map(House, input().split()))
-a.sort(key=lambda x: x.val)
-length = 0
-pos1 = pos2 = 1
-for i in range(n * 2):
-    if i % 2:
-        length += abs(pos2 - a[i].id)
-        pos2 = a[i].id
-    else:
-        length += abs(pos1 - a[i].id)
-        pos1 = a[i].id
-print(length)
+    nd=nod(nd,l[i]-l[i-1])
+    
+for i in range(m):
+   
+    if nd%p[i]==0:
+        ans=i
+        break
+    
+if ans==-1:
+    print('NO')
+else:
+    print('YES')
+    print(l[0],ans+1)
+    
+
+    
