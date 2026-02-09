@@ -1,21 +1,20 @@
 import bisect
 
 def putaway(A, B, T, X, Y, W, S):
-    X_sorted = sorted(X)
-    Y_sorted = sorted(Y)
-    
-    can_weak = []
-    can_small = []
-    
-    for w in W:
-        idx = bisect.bisect_right(X_sorted, w)
-        can_weak.append(idx < len(X_sorted))
-    
-    for s in S:
-        idx = bisect.bisect_right(Y_sorted, s)
-        can_small.append(idx < len(Y_sorted))
-    
-    # Check if any toy can't be assigned to any
+    if A + B == 0:
+        return -1  # According to problem constraints, this won't happen
+
+    sorted_X = sorted(X)
+    sorted_Y = sorted(Y)
+
+    Bw = 0  # Toys only assignable to weak
+    Cs = 0  # Toys only assignable to small
+    A_total = 0  # Toys assignable to either
+
     for i in range(T):
-        if not (can_weak[i] or can_small[i]):
-          
+        w = W[i]
+        s = S[i]
+
+        # Check if can be handled by weak robots
+        pos_x = bisect.bisect_right(sorted_X, w)
+        is_weak = 
