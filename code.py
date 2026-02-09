@@ -1,1 +1,5 @@
-Okay, let's see. The problem is to take an input integer a between 1 and 30 and output a single integer. The example given is input 3 outputs 27. Hmm, wait, 3 cubed is 27. So maybe the task is to compute a cubed? That seems straightforward. But let me think again. Are there any other possibilities? Like maybe factorials or something else? Let's check the example again. 3*3*3 is 27, which fits. Let's see another example. If a was 2, output would be 8? Yes. And 1 would be 1. So yes, it's probably 
+Okay, I need to solve this programming problem where the input is an integer a between 1 and 30, and the output is another integer. The example given is input 3 outputs 27. Let me think about what's going on here. 
+
+Hmm, 3 cubed is 27. Oh right! So maybe the problem is to compute a cubed? Let me check. If the input is 3, then 3^3 is 27. That fits. Let me see if there's any other possibility. Like maybe a factorial? But 3 factorial is 6, which doesn't match. So cubing seems likely. 
+
+So the task 
