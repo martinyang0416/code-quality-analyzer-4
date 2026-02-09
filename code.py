@@ -1,19 +1,12 @@
+# Read the number of test cases
 T = int(input())
 for _ in range(T):
-    n, m = map(int, input().split())
-    s = input().strip()
-    possible = False
-    for i in range(1, n+1):
-        for j in range(1, m+1):
-            ci, cj = i, j
-            valid = True
-            for move in s:
-                if move == 'L':
-                    cj -= 1
-                elif move == 'R':
-                    cj += 1
-                elif move == 'U':
-                    ci -= 1
-                else:
-                    ci += 1
-          
+    N = int(input())
+    A = list(map(int, input().split()))
+    ones = [i + 1 for i, val in enumerate(A) if val == 1]
+    safe = True
+    for i in range(1, len(ones)):
+        if ones[i] - ones[i-1] < 6:
+            safe = False
+            break
+    print("YES" if safe else "NO")
