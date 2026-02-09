@@ -1,18 +1,21 @@
-A_str = "What are you doing while sending "  # length 32
-B_str = " Are you busy? Will you send "      # length 29
-f0_str = "What are you doing at the end of the world? Are you busy? Will you save us?"
-
-def solve():
-    import sys
-    input = sys.stdin.read().split()
-    q = int(input[0])
-    idx = 1
-    output = []
-    for _ in range(q):
-        n = int(input[idx])
-        k = int(input[idx+1])
-        idx +=2
-
-        if n > 60:
-            # Proceed since L_n is way larger than k
-            c
+def get_char(n, k):
+    f0 = "What are you doing at the end of the world? Are you busy? Will you save us?"
+    L0 = 75
+    
+    if n == 0:
+        if k <= L0:
+            return f0[k-1]
+        else:
+            return '.'
+    
+    # Compute L_{n-1} iteratively to avoid recursion
+    L_prev = L0
+    for i in range(1, n):
+        L_prev = 2 * L_prev + 68
+    current_L = 2 * L_prev + 68
+    
+    if k > current_L:
+        return '.'
+    
+    A_len = 33
+    first_part_len = A_len + (1 + L_prev + 1 +
