@@ -1,20 +1,23 @@
-MOD = 10**9 + 7
+import sys
+from collections import defaultdict
 
-n, T = map(int, input().split())
-movies = [tuple(map(int, input().split())) for _ in range(n)]
+def main():
+    n = int(sys.stdin.readline())
+    arr = list(map(int, sys.stdin.readline().split()))
+    unique = set(arr)
+    required = len(unique)
+    if required == 0:
+        print("1 1")
+        return
 
-max_mask = 1 << n
-# Initialize DP table with all zeros
-dp = [[[0] * (T + 1) for _ in range(5)] for _ in range(max_mask)]
+    current_counts = defaultdict(int)
+    have = 0
+    min_length = float('inf')
+    result = (0, 0)
+    left = 0
 
-for i in range(n):
-    t_i, c_i = movies[i]
-    if t_i <= T:
-        mask = 1 << i
-        dp[mask][c_i][t_i] += 1
-
-for mask in range(max_mask):
-    for last in range(1, 5):
-        for time in range(T + 1):
-            if dp[mask][last][time] == 0:
-               
+    for right in range(n):
+        el = arr[right]
+        current_counts[el] += 1
+        if current_counts[el] == 1:
+         
