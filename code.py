@@ -1,16 +1,17 @@
-def count_digit_one(n):
-    count = 0
-    i = 0
-    while 10**i <= n:
-        divisor = 10 ** (i + 1)
-        higher = n // divisor
-        current = (n // (10**i)) % 10
-        lower = n % (10**i)
-        if current < 1:
-            count += higher * (10**i)
-        elif current == 1:
-            count += higher * (10**i) + lower + 1
-        else:
-            count += (higher + 1) * (10**i)
-        i += 1
-    return count
+from typing import List
+from collections import deque
+
+class Solution:
+    def isEscapePossible(self, blocked: List[List[int]], source: List[int], target: List[int]) -> bool:
+        blocked_set = set(map(tuple, blocked))
+        source_tuple = tuple(source)
+        target_tuple = tuple(target)
+        
+        if source_tuple in blocked_set or target_tuple in blocked_set:
+            return False
+        
+        if not blocked:
+            return True
+        
+        m = len(blocked)
+        
