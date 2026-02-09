@@ -1,19 +1,20 @@
-import sys
-import time
-import itertools
-from itertools import accumulate, product, permutations, combinations
-import collections
-from collections import Counter, OrderedDict, deque, defaultdict, ChainMap
-from functools import lru_cache
-import math
-from math import sqrt, sin, cos, tan, ceil, fabs, floor, gcd, exp, log, log2
-import fractions
-from typing import List, Tuple
-import numpy as np
-import random
-import heapq
-from heapq import *
-from dataclasses import dataclass
-
-import builtins
-import re
+def dis(a,b,c):
+	return abs(a-b)+abs(b-c)+abs(a-c);
+t=int(input());
+while(t>0):
+	t-=1;
+	l=list(map(int,input().split()));
+	a=l[0];
+	b=l[1];
+	c=l[2];
+	ans=dis(a,b,c);
+	for i in range(-1,2):
+		for j in range(-1,2):
+			for k in range(-1,2):
+				x=a+i;
+				y=b+j;
+				z=c+k;
+				s=dis(x,y,z);
+				if(s<ans):
+					ans=s;
+	print(ans);
