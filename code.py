@@ -1,19 +1,13 @@
-def clumsy(N: int) -> int:
-    if N == 0:
-        return 0
-    current_term = N
-    terms = []
-    current_sign = 1
-    op_index = 0
-    ops = ['*', '/', '+', '-']
-    for i in range(N-1, 0, -1):
-        op = ops[op_index % 4]
-        if op in ('*', '/'):
-            if op == '*':
-                current_term *= i
-            else:
-                current_term = current_term // i
-            op_index += 1
+def minEatingSpeed(piles, h):
+    low = 1
+    high = max(piles)
+    while low <= high:
+        mid = (low + high) // 2
+        total_hours = 0
+        for bananas in piles:
+            total_hours += (bananas + mid - 1) // mid
+        if total_hours <= h:
+            high = mid - 1
         else:
-            terms.append(current_sign * current_term)
-            current_sig
+            low = mid + 1
+    return low
