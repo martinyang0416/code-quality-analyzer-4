@@ -1,23 +1,20 @@
-import sys
-from collections import defaultdict, deque
-
-sys.setrecursionlimit(1 << 25)
-
 def main():
-    n = int(sys.stdin.readline())
-    if n % 2 != 0:
-        print(0)
-        return
-
-    edges = [[] for _ in range(n+1)]
-    for _ in range(n-1):
-        a, b = map(int, sys.stdin.readline().split())
-        edges[a].append(b)
-        edges[b].append(a)
-
-    parent = [0]*(n+1)
-    children = [[] for _ in range(n+1)]
-    visited = [False]*(n+1)
-    q = deque([1])
-    visited[1] = True
-    while q:
+    import sys
+    input = sys.stdin.read().split()
+    idx = 0
+    T = int(input[idx])
+    idx += 1
+    for _ in range(T):
+        M = int(input[idx])
+        idx += 1
+        parts = list(map(int, input[idx:idx + int(input[idx]) + 1]))
+        N = parts[0]
+        stones = parts[1:N+1]
+        stones.sort()
+        left = 0
+        right = N - 1
+        count = 0
+        while left <= right:
+            if stones[left] + stones[right] <= M:
+                left += 1
+               
