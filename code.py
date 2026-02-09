@@ -1,17 +1,27 @@
-import sys
+import bisect
 
 def main():
-    T = int(sys.stdin.readline())
+    import sys
+    input = sys.stdin.read().split()
+    ptr = 0
+    T = int(input[ptr])
+    ptr += 1
+    all_sequences = [
+        [],
+        ['R'],
+        ['Y'],
+        ['R', 'R'],
+        ['R', 'Y'],
+        ['Y', 'R'],
+        ['R', 'R', 'Y'],
+        ['R', 'Y', 'R'],
+        ['Y', 'R', 'R']
+    ]
+    
     for _ in range(T):
-        n = int(sys.stdin.readline())
-        l = int(sys.stdin.readline())
-        # Read the edges but ignore them
-        for _ in range(l):
-            u, v = map(int, sys.stdin.readline().split())
-        if l > n - 1:
-            print("CYCLE DETECTED.")
-        else:
-            print("NO CYCLE.")
-
-if __name__ == "__main__":
-    main()
+        n = int(input[ptr])
+        p = int(input[ptr+1])
+        ptr +=2
+        m = list(map(int, input[ptr:ptr+n]))
+        ptr +=n
+     
