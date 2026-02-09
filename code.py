@@ -1,20 +1,14 @@
-class BIT:
-    def __init__(self, size):
-        self.size = size
-        self.tree = [0] * (self.size + 2)  # Use +2 to avoid issues with 1-based indexing
+def removeDuplicateLetters(s):
+    last_occurrence = {c: i for i, c in enumerate(s)}
+    stack = []
+    visited = set()
     
-    def update(self, idx, delta):
-        while idx <= self.size:
-            self.tree[idx] += delta
-            idx += idx & -idx
+    for i, c in enumerate(s):
+        if c in visited:
+            continue
+        while stack and c < stack[-1] and last_occurrence[stack[-1]] > i:
+            visited.remove(stack.pop())
+        stack.append(c)
+        visited.add(c)
     
-    def query(self, idx):
-        res = 0
-        while idx > 0:
-            res += self.tree[idx]
-            idx -= idx & -idx
-        return res
-
-def min_swaps(grid):
-    n = len(grid)
-    max_pos = 
+    return ''.join(stack)
