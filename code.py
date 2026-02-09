@@ -1,18 +1,10 @@
-from collections import defaultdict, deque
-
-def numBusesToDestination(routes, S, T):
-    if S == T:
-        return 0
-    stop_to_buses = defaultdict(list)
-    for bus_id, route in enumerate(routes):
-        for stop in route:
-            stop_to_buses[stop].append(bus_id)
+def minScoreTriangulation(values):
+    n = len(values)
+    dp = [[0] * n for _ in range(n)]
     
-    start_buses = set(stop_to_buses.get(S, []))
-    target_buses = set(stop_to_buses.get(T, []))
+    for d in range(2, n):
+        for i in range(n - d):
+            j = i + d
+            dp[i][j] = min(dp[i][k] + dp[k][j] + values[i] * values[k] * values[j] for k in range(i+1, j))
     
-    if start_buses & target_buses:
-        return 1
-    
-    visited = set(start_buses)
-    queue = deque([(bus, 1) for 
+    return dp[0][n-1]
