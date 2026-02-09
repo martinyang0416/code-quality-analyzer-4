@@ -1,26 +1,23 @@
-import bisect
+import sys
 
-def main():
-    import sys
-    input = sys.stdin.read
-    data = input().split()
-    idx = 0
-    M = int(data[idx])
-    idx += 1
-    D = int(data[idx])
-    idx += 1
+def can_reach_end(n, k, r):
+    # Check left path
+    current = 0
+    left_possible = True
+    for i in range(k-1, 0, -1):
+        current += r[i-1]
+        if current < 0:
+            left_possible = False
+            break
+    if left_possible:
+        return True
     
-    sites = []
-    for _ in range(M):
-        r = int(data[idx])
-        p = int(data[idx + 1])
-        sites.append((r, p))
-        idx += 2
-    
-    # Sort the sites based on position
-    sites.sort(key=lambda x: x[1])
-    
-    p_list = [p for (r, p) in sites]
-    r_list = [r for (r, p) in sites]
-    
-    # Comp
+    # Check right path
+    current = 0
+    right_possible = True
+    for i in range(k+1, n+1):
+        if i > n:
+            break
+        current += r[i-1]
+        if current < 0:
+            right_possible = False
