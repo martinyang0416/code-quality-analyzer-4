@@ -1,21 +1,17 @@
-import bisect
+from collections import deque
 
 def main():
-    import sys
-    input = sys.stdin.read().split()
-    idx = 0
-    N = int(input[idx]); idx +=1
-    a = list(map(int, input[idx:idx+N])); idx +=N
-    Q = int(input[idx]); idx +=1
-    queries = []
-    for _ in range(Q):
-        i = int(input[idx])-1  # convert to 0-based
-        j = int(input[idx+1])
-        queries.append( (i, j) )
-        idx +=2
+    s = input().strip()
+    target = list("bessie")  # The target sequence to form
+    n = len(s)
+    steps = [deque() for _ in range(7)]  # steps[0] to steps[6]
+    completed = []
 
-    S = sorted(a)
-    prefix_sum = [0]*(N+1)
-    for i in range(N):
-        prefix_sum[i+1] = prefix_sum[i] + S[i]
-    to
+    for R in range(n):
+        c = s[R]
+        # Process the current character for each possible step backward
+        for i in range(5, -1, -1):
+            if c == target[i]:
+                if steps[i]:
+                    start = steps[i].popleft()
+                    i
