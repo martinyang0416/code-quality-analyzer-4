@@ -1,22 +1,12 @@
-import collections
-
-def predictPartyVictory(senate):
-    radiant = collections.deque()
-    dire = collections.deque()
-    n = len(senate)
-    for i, c in enumerate(senate):
-        if c == 'R':
-            radiant.append(i)
-        else:
-            dire.append(i)
-    
-    while radiant and dire:
-        r = radiant[0]
-        d = dire[0]
-        if r < d:
-            radiant.popleft()
-            dire.popleft()
-            radiant.append(r + n)
-        else:
-            dire.popleft()
-         
+def myPow(x: float, n: int) -> float:
+    if n == 0:
+        return 1.0
+    abs_n = abs(n)
+    result = 1.0
+    current_product = x
+    while abs_n > 0:
+        if abs_n % 2 == 1:
+            result *= current_product
+        current_product *= current_product
+        abs_n = abs_n // 2
+    return 1 / result if n < 0 else result
