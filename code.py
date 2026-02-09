@@ -1,16 +1,22 @@
-import math
+import sys
+from collections import defaultdict
 
-n = int(input())
-sum_a = 0
+n, p = map(int, sys.stdin.readline().split())
+count = [0] * (n + 1)  # 1-based indexing
+pair_count = defaultdict(int)
+
 for _ in range(n):
-    a, g = map(int, input().split())
-    sum_a += a
+    xi, yi = map(int, sys.stdin.readline().split())
+    a, b = sorted((xi, yi))
+    count[a] += 1
+    count[b] += 1
+    pair_count[(a, b)] += 1
 
-lower_k = max(0, math.ceil((sum_a - 500) / 1000))
-upper_k = min(n, math.floor((sum_a + 500) / 1000))
+counts_sorted = sorted(count[1:n+1])
+total = 0
+length = len(counts_sorted)
 
-if lower_k > upper_k:
-    print(-1)
-else:
-    k = lower_k
-    print('G' * k + 'A' * (n - k))
+for i in range(length):
+    left = i + 1
+    right = length - 1
+    j = length  # Initialize 
