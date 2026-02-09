@@ -6,15 +6,15 @@ def main():
     for _ in range(N):
         s = sys.stdin.readline().strip()
         mask = 0
-        for c in reversed(s):
+        for c in s:
             mask = (mask << 1) | (1 if c == 'H' else 0)
         masks.append(mask)
-    
-    # Build the trie
-    trie = [ [None, None] ]  # root is node 0
-    
+
+    # Build the trie as a list of dictionaries
+    nodes = [{'0': None, '1': None}]  # root is node 0
+
     for mask in masks:
-        current_node = 0
+        node_id = 0
         for i in range(C-1, -1, -1):
-            current_bit = (mask >> i) & 1
-            c
+            bit = (mask >> i) & 1
+         
