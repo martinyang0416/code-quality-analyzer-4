@@ -1,17 +1,16 @@
 n = int(input())
-arr = list(map(int, input().split()))
-S = set(arr)
+typedefs = {}
 
-for y in S:
-    if arr[y - 1] != y:
-        print(-1)
-        exit()
-
-m = len(S)
-h_list = sorted(S)
-y_to_idx = {y: i+1 for i, y in enumerate(h_list)}
-g = [y_to_idx[val] for val in arr]
-
-print(m)
-print(' '.join(map(str, g)))
-print(' '.join(map(str, h_list)))
+for _ in range(n):
+    parts = input().strip().split()
+    if parts[0] == 'typedef':
+        A, B = parts[1], parts[2]
+        base_name = ''.join([c for c in A if c not in '*&'])
+        modifiers = [c for c in A if c in '*&']
+        num_stars = modifiers.count('*')
+        num_amps = modifiers.count('&')
+        
+        if base_name == 'void':
+            current_base, current_ptr = 'void', 0
+        elif base_name == 'errtype':
+            current_base, curre
