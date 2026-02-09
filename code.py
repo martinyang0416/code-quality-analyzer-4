@@ -1,3 +1,3 @@
-n, m = map(int, input().split())
-result = (n * (n + 1)) % m
-print(result)
+n, a, b = map(int, input().split())
+new_index = (a - 1 + b) % n
+print(new_index + 1)
