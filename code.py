@@ -1,16 +1,25 @@
-import sys
+import bisect
 
 def main():
-    sys.setrecursionlimit(1 << 25)
-    N = int(sys.stdin.readline())
-    a = list(map(int, sys.stdin.readline().split()))
-    prefix = [0] * (N + 1)
-    for i in range(N):
-        prefix[i+1] = prefix[i] + a[i]
+    import sys
+    input = sys.stdin.read().split()
+    idx = 0
+    N = int(input[idx])
+    idx += 1
+    a = list(map(int, input[idx:idx+N]))
+    idx += N
+    Q = int(input[idx])
+    idx += 1
+    queries = []
+    for _ in range(Q):
+        i = int(input[idx])
+        j = int(input[idx+1])
+        queries.append((i-1, j))  # Convert to 0-based
+        idx += 2
 
-    for i in range(1, N+1):
-        # Compute A: subarrays including i
-        A = [prefix[r] - prefix[l-1] for l in range(1, i+1) for r in range(i, N+1)]
-        # Compute B: subarrays not including i
-        B = []
-        # Left part: subarrays entirely before 
+    S = sorted(a)
+    P = [0] * (N + 1)
+    for i in range(N):
+        P[i + 1] = P[i] + S[i]
+    T = 0
+    fo
