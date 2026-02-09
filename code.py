@@ -1,23 +1,14 @@
-import sys
-from collections import deque
+names = ["Alfie", "Balthazar", "Cedric", "Duncan", "Evan"]
 
-def main():
-    input = sys.stdin.read().split()
-    ptr = 0
-    t = int(input[ptr])
-    ptr += 1
-    for _ in range(t):
-        rows = int(input[ptr])
-        cols = int(input[ptr+1])
-        start_r = int(input[ptr+2])
-        start_c = int(input[ptr+3])
-        ptr +=4
-        
-        k = int(input[ptr])
-        ptr +=1
-        
-        closed = set()
-        for __ in range(k):
-            r = int(input[ptr])
-            c = int(input[ptr+1])
-      
+n = int(input())
+
+if n <= 5:
+    print(names[n-1])
+else:
+    m = 0
+    while 5 * (2 ** (m + 1) - 1) < n:
+        m += 1
+    rem = n - 5 * (2 ** m - 1)
+    per_wizard = 2 ** m
+    wizard_index = (rem - 1) // per_wizard
+    print(names[wizard_index])
