@@ -1,23 +1,20 @@
-import sys
-
 def main():
+    import sys
     input = sys.stdin.read().split()
-    ptr = 0
-    T = int(input[ptr])
-    ptr += 1
+    idx = 0
+    T = int(input[idx])
+    idx += 1
     for _ in range(T):
-        N = int(input[ptr])
-        K = int(input[ptr+1])
-        ptr +=2
-        A = list(map(int, input[ptr:ptr+K]))
-        ptr += K
-        m = max(A)
-        if N >= m:
-            print(0)
-        else:
-            res = 1
-            for i in range(1, N+1):
-                res = (res * i) % m
-            print(res % m)
-            
+        N = int(input[idx])
+        idx += 1
+        W = list(map(int, input[idx:idx+N]))
+        idx += N
+        max_v = 0
+        for i in range(N):
+            current = W[i] + i
+            if current > max_v:
+                max_v = current
+        print(max_v)
+
 if __name__ == "__main__":
+    main()
