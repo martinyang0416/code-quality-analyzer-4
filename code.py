@@ -1,21 +1,19 @@
-S = input().strip()
-n = len(S)
-max_num = 0
+from collections import Counter
 
-for a in range(n):
-    current_letters = 0
-    pos = -1
-    for b in range(a, n):
-        if S[b].isalpha():
-            current_letters += 1
-            if current_letters == 1:
-                pos = b
-            else:
-                break  # More than one letter, stop this a's loop
-        if current_letters > 1:
-            break
-        # Generate candidate
-        if current_letters == 0:
-            candidate = S[a:b+1]
-        else:
-          
+def is_dynamic(s):
+    freq = list(Counter(s).values())
+    freq.sort()
+    n = len(freq)
+    if n < 3:
+        return True
+    if n == 3:
+        return freq[0] + freq[1] == freq[2]
+    else:
+        # Check two possible permutations: original and first two swapped
+        def check_sequence(lst):
+            for i in range(2, len(lst)):
+                if lst[i] != lst[i-1] + lst[i-2]:
+                    return False
+            return True
+        
+        # 
