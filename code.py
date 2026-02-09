@@ -1,20 +1,14 @@
-n, C, D = map(int, input().split())
-points = [int(input()) for _ in range(n)]
-points.sort()
+n, b = map(int, input().split())
+v = int(input())
+max_h = 0.0
 
-if n == 0:
-    print(0.0)
-else:
-    dp = [float('inf')] * n
-    dp[0] = C  # Covering just the first point with r=0
-    
-    for i in range(1, n):
-        for j in range(i + 1):
-            left = points[j]
-            right = points[i]
-            r = (right - left) / 2
-            cost = C + D * r
-            if j == 0:
-                prev_cost = 0
-            else:
-                prev_cost = dp[j - 
+for _ in range(n):
+    x, h = map(int, input().split())
+    if v < x < b:
+        numerator = h * (b - v)
+        denominator = x - v
+        H = numerator / denominator
+        if H > max_h:
+            max_h = H
+
+print("{0:.6f}".format(max_h))
