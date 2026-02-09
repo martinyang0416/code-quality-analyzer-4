@@ -1,20 +1,19 @@
 import sys
+from collections import deque
 
-n = int(sys.stdin.readline())
-a = [int(sys.stdin.readline()) for _ in range(n)]
-max_val = max(a)
-max_count = a.count(max_val)
-second_max = -float('inf')
-
-for num in a:
-    if num < max_val and num > second_max:
-        second_max = num
-
-for num in a:
-    if num < max_val:
-        print(max_val)
-    else:
-        if max_count > 1:
-            print(max_val)
-        else:
-            print(second_max if second_max != -float('inf') else max_val)
+def main():
+    H, W, K = map(int, sys.stdin.readline().split())
+    grid = []
+    start = None
+    for i in range(H):
+        row = sys.stdin.readline().strip()
+        grid.append(list(row))
+        for j in range(W):
+            if grid[i][j] == 'S':
+                start = (i, j)
+    
+    # Precompute distance to the nearest exit for each cell
+    distance = [[-1] * W for _ in range(H)]
+    q = deque()
+    for i in range(H):
+        for j in range(W)
