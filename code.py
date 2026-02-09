@@ -1,16 +1,21 @@
 n = int(input())
-d = list(map(int, input().split()))
-t = int(input())
+arr = list(map(int, input().split()))
+sum_total = sum(arr)
+arr_sorted = sorted(arr, key=lambda x: abs(x))
 
-d.sort(reverse=True)
-current_sum = 0
-max_k = 0
-
-for i in range(n):
-    current_sum += d[i]
-    if current_sum <= t:
-        max_k = i + 1
+contributions = []
+for x in arr_sorted:
+    if x < 0:
+        contributions.append(2 * (-x))
     else:
-        break  # No need to check further as sorted in descending order
+        contributions.append(-2 * x)
+contributions.sort(reverse=True)
 
-print(max_k)
+prefix = [0] * (2 * n + 1)
+for i in range(1, 2 * n + 1):
+    if i-1 < len(contributions):
+        prefix[i] = prefix[i-1] + contributions[i-1]
+    else:
+        prefix[i] = prefix[i-1]
+
+max_sum = -float
