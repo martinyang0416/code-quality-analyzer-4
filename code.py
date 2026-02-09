@@ -1,22 +1,23 @@
-import decimal
 import sys
 
 def main():
     input = sys.stdin.read().split()
-    t = int(input[0])
-    idx = 1
-    for _ in range(t):
-        n = int(input[idx])
-        k = int(input[idx+1])
-        idx += 2
+    idx = 0
+    T = int(input[idx])
+    idx += 1
+    for _ in range(T):
+        N, K = int(input[idx]), int(input[idx+1])
+        idx +=2
+        A = list(map(int, input[idx:idx+N]))
+        idx += N
         
-        # Compute last k digits
-        mod = 10 ** k
-        last_part = pow(n, n, mod)
-        last = f"{last_part:0{k}d}"
+        found = False
+        if K in A:
+            print("YES")
+            continue
         
-        # Compute first k digits
-        with decimal.localcontext() as ctx:
-            ctx.prec = 50
-            dn = decimal.Decimal(n)
-          
+        for i in range(N):
+            m = A[i]
+            if m > K:
+                continue
+            new_list = A[:i] + A[i+1:]
