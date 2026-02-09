@@ -1,13 +1,16 @@
-def numberToWords(num):
-    ones = ["", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten",
-            "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen",
-            "Eighteen", "Nineteen"]
-    tens = ["", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"]
+from collections import Counter
+
+def minSetSize(arr):
+    n = len(arr)
+    target = n // 2
+    freq = Counter(arr)
+    sorted_freq = sorted(freq.values(), reverse=True)
     
-    def convert_three_digits(n):
-        if n == 0:
-            return ""
-        parts = []
-        hundreds = n // 100
-        remainder = n % 100
-  
+    count = 0
+    total = 0
+    for f in sorted_freq:
+        total += f
+        count += 1
+        if total >= target:
+            break
+    return count
