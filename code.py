@@ -1,19 +1,27 @@
-import sys
+n = int(input())
+ages = list(map(int, input().split()))
 
-def main():
-    n = int(sys.stdin.readline())
-    c = list(map(int, sys.stdin.readline().split()))
-    s = list(map(int, sys.stdin.readline().split()))
-    
-    max_sum = 0
-    
-    for i in range(n):
-        a = c[i]
-        sa = s[i]
-        for j in range(i + 1, n):
-            b = c[j]
-            sb = s[j]
-            # Check if neither a is subset of b nor b is subset of a
-            intersect = a & b
-            if (intersect == a) or (intersect == b):
-                continu
+evens = []
+odds = []
+
+for idx in range(n):
+    if ages[idx] % 2 == 0:
+        evens.append(idx + 1)  # Using 1-based index
+    else:
+        odds.append(idx + 1)
+
+even_count = len(evens)
+odd_count = len(odds)
+
+impossible = False
+if even_count > 0 and even_count < 4:
+    impossible = True
+if odd_count > 0 and odd_count < 4:
+    impossible = True
+
+if impossible:
+    print("Impossible")
+else:
+    tables = []
+    if even_count >= 4:
+        ta
