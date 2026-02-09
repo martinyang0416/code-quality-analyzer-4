@@ -1,17 +1,16 @@
-import bisect
+def putaway(A, B, T, X, Y, W, S):
+    class Edge:
+        __slots__ = ['to', 'rev', 'capacity']
+        def __init__(self, to, rev, capacity):
+            self.to = to
+            self.rev = rev
+            self.capacity = capacity
 
-def compute_min_time(robots, toys, max_time):
-    robots.sort()
-    toys.sort()
-    counts = [0] * len(robots)
-    for toy in toys:
-        idx = bisect.bisect_right(robots, toy)
-        if idx >= len(robots):
-            return -1  # cannot assign
-        # Find first robot from idx with counts < max_time
-        found = False
-        for i in range(idx, len(robots)):
-            if counts[i] < max_time:
-                counts[i] += 1
-                found = True
-                
+    class Dinic:
+        def __init__(self, n):
+            self.size = n
+            self.graph = [[] for _ in range(n)]
+        
+        def add_edge(self, fr, to, cap):
+            forward = Edge(to, len(self.graph[to]), cap)
+            backward = Edge(fr, len(se
