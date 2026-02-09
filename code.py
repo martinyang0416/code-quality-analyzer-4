@@ -1,14 +1,24 @@
-names = ["Alfie", "Balthazar", "Cedric", "Duncan", "Evan"]
-
-n = int(input())
-
-if n <= 5:
-    print(names[n-1])
-else:
-    m = 0
-    while 5 * (2 ** (m + 1) - 1) < n:
-        m += 1
-    rem = n - 5 * (2 ** m - 1)
-    per_wizard = 2 ** m
-    wizard_index = (rem - 1) // per_wizard
-    print(names[wizard_index])
+def main():
+    import sys
+    input = sys.stdin.read().split()
+    idx = 0
+    n = int(input[idx])
+    idx += 1
+    r1 = int(input[idx])
+    idx += 1
+    r2 = int(input[idx])
+    idx += 1
+    r3 = int(input[idx])
+    idx += 1
+    d = int(input[idx])
+    idx += 1
+    a = list(map(int, input[idx:idx+n]))
+    
+    total = 0
+    movement = (n - 1) * d
+    for ai in a:
+        groups = ai + 1
+        blaster = groups * r1
+        plasma = r2
+        ion = groups * r3
+        total += min(blaster, pl
