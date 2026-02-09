@@ -1,12 +1,16 @@
+n = int(input())
+d = list(map(int, input().split()))
 t = int(input())
-for _ in range(t):
-    s = input().strip()
-    freq = {}
-    for c in s:
-        if c in freq:
-            freq[c] += 1
-        else:
-            freq[c] = 1
-    total = sum(min(2, count) for count in freq.values())
-    k = total // 2
-    print(k)
+
+d.sort(reverse=True)
+current_sum = 0
+max_k = 0
+
+for i in range(n):
+    current_sum += d[i]
+    if current_sum <= t:
+        max_k = i + 1
+    else:
+        break  # No need to check further as sorted in descending order
+
+print(max_k)
