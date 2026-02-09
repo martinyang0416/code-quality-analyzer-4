@@ -1,18 +1,11 @@
-n, m = map(int, input().split())
-w = list(map(int, input().split()))
-b = list(map(int, input().split()))
+import math
 
-last_occurrence = {book: -1 for book in range(1, n + 1)}
-for idx in range(m):
-    book = b[idx]
-    last_occurrence[book] = idx  # Using zero-based index for ordering
+x, y, z = map(float, input().split())
 
-# Sort books by their last occurrence in ascending order
-sorted_books = sorted(range(1, n + 1), key=lambda x: last_occurrence[x])
-
-stack = sorted_books.copy()
-total = 0
-
-for book in b:
-    index = stack.index(book)
-    # Calcu
+expressions = [
+    {'index': 1, 'expr': 'x^y^z', 'type': 1, 'A': z * math.log(y), 'B': math.log(x)},
+    {'index': 2, 'expr': 'x^z^y', 'type': 1, 'A': y * math.log(z), 'B': math.log(x)},
+    {'index': 3, 'expr': '(x^y)^z', 'type': 2, 'log_val': y * z * math.log(x)},
+    {'index': 4, 'expr': '(x^z)^y', 'type': 2, 'log_val': z * y * math.log(x)},
+    {'index': 5, 'expr': 'y^x^z', 'type': 1, 'A': z * math.log(x), 'B': math.log(y)},
+    {'index': 
