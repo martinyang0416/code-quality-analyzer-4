@@ -1,22 +1,20 @@
-import sys
+MOD = 1000009
 
-def find_special_number(M):
-    L = (M + 7) // 8
-    U = M // 5
-    if L > U:
-        return "-1"
+def main():
+    import sys
+    h, w, p = map(int, sys.stdin.readline().split())
+    is_penalty = [[False]*(w+1) for _ in range(h+1)]
+    for _ in range(p):
+        row, col = map(int, sys.stdin.readline().split())
+        is_penalty[row][col] = True
+    
+    # Initialize DP table
+    dp = [[[0]*(p+1) for _ in range(w+1)] for __ in range(h+1)]
+    
+    # Starting cell (1,1)
+    if is_penalty[1][1]:
+        dp[1][1][1] = 1
     else:
-        for N in range(L, U + 1):
-            temp = M - 5 * N
-            if temp % 3 != 0:
-                continue
-            k = temp // 3
-            if k < 0 or k > N:
-                continue
-            # Form the number
-            s = '5' * (N - k) + '8' * k
-            return s
-        return "-1"
-
-M = int(sys.stdin.readline())
-print(find_special_number(M))
+        dp[1][1][0] = 1
+    
+    for i in range(1,
