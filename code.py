@@ -1,26 +1,21 @@
 import heapq
+from collections import defaultdict
 
 def main():
     import sys
     input = sys.stdin.read().split()
     ptr = 0
-    W = int(input[ptr])
-    H = int(input[ptr+1])
-    ptr += 2
-    maze = []
-    for _ in range(H):
-        row = input[ptr]
-        ptr += 1
-        maze.append(row)
+    N = int(input[ptr]); ptr +=1
+    M = int(input[ptr]); ptr +=1
+    E = int(input[ptr]); ptr +=1
+    S = int(input[ptr]); ptr +=1
+    T = int(input[ptr]); ptr +=1
+    R = int(input[ptr]); ptr +=1
+
+    original_roads = []
+    for _ in range(M):
+        a = int(input[ptr]); ptr +=1
+        b = int(input[ptr]); ptr +=1
+        original_roads.append((a, b))
     
-    score_table = []
-    for _ in range(10):
-        row = list(map(int, input[ptr:ptr+10]))
-        ptr += 10
-        score_table.append(row)
-    
-    start = None
-    end = None
-    items = {}
-    for y in range(H):
-        for x in ran
+    events 
