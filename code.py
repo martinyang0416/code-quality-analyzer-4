@@ -1,11 +1,11 @@
-def minSwap(s1: str, s2: str) -> int:
-    total_x = s1.count('x') + s2.count('x')
-    if total_x % 2 != 0:
-        return -1
-    xy = yx = 0
-    for c1, c2 in zip(s1, s2):
-        if c1 == 'x' and c2 == 'y':
-            xy += 1
-        elif c1 == 'y' and c2 == 'x':
-            yx += 1
-    return (xy // 2) + (yx // 2) + 2 * (xy % 2)
+def minOperations(nums):
+    sum_bits = 0
+    max_bit = 0
+    for num in nums:
+        if num == 0:
+            continue
+        sum_bits += bin(num).count('1')
+        current_bit = num.bit_length()
+        if current_bit > max_bit:
+            max_bit = current_bit
+    return sum_bits + max(0, max_bit - 1)
