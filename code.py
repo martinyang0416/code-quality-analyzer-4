@@ -1,13 +1,15 @@
-n = int(input())
-c = list(map(int, input().split()))
-t = list(map(int, input().split()))
+import math
 
-if c[0] != t[0] or c[-1] != t[-1]:
-    print("No")
-else:
-    c_diff = [c[i] - c[i-1] for i in range(1, n)]
-    t_diff = [t[i] - t[i-1] for i in range(1, n)]
-    if sorted(c_diff) == sorted(t_diff):
-        print("Yes")
-    else:
-        print("No")
+n = int(input())
+a = list(map(int, input().split()))
+max_a = max(a)
+differences = [max_a - x for x in a]
+
+current_gcd = 0
+for d in differences:
+    current_gcd = math.gcd(current_gcd, d)
+
+z = current_gcd
+y = sum(d // z for d in differences)
+
+print(y, z)
