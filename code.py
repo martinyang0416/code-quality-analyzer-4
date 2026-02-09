@@ -1,20 +1,17 @@
-def getMaxLen(nums):
-    segments = []
-    current = []
-    for num in nums:
-        if num == 0:
-            if current:
-                segments.append(current)
-                current = []
-        else:
-            current.append(num)
-    if current:
-        segments.append(current)
-    
-    max_length = 0
-    for seg in segments:
-        negatives = [i for i, x in enumerate(seg) if x < 0]
-        count = len(negatives)
-        if count % 2 == 0:
-            candidate = len(seg)
-        else:
+from collections import defaultdict
+
+def totalFruit(tree):
+    count = defaultdict(int)
+    left = 0
+    max_fruits = 0
+    for right in range(len(tree)):
+        fruit = tree[right]
+        count[fruit] += 1
+        while len(count) > 2:
+            left_fruit = tree[left]
+            count[left_fruit] -= 1
+            if count[left_fruit] == 0:
+                del count[left_fruit]
+            left += 1
+        max_fruits = max(max_fruits, right - left + 1)
+    return max_fruits
