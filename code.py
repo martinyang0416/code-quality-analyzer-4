@@ -1,19 +1,11 @@
-def maxScoreWords(words, letters, score):
-    from collections import defaultdict
+from collections import defaultdict
 
-    # Precompute the count of each letter available
-    letters_count = [0] * 26
-    for c in letters:
-        letters_count[ord(c) - ord('a')] += 1
-
-    # Precompute the count of each character for every word
-    word_counts = []
-    for word in words:
-        cnt = [0] * 26
-        for c in word:
-            cnt[ord(c) - ord('a')] += 1
-        word_counts.append(cnt)
-
-    max_score = 0
-    n = len(words)
-    # I
+def leastBricks(wall):
+    edge_counts = defaultdict(int)
+    for row in wall:
+        current_sum = 0
+        for brick in row[:-1]:
+            current_sum += brick
+            edge_counts[current_sum] += 1
+    max_edges = max(edge_counts.values(), default=0)
+    return len(wall) - max_edges
