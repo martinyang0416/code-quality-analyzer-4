@@ -1,15 +1,22 @@
-def findLongestWord(s, d):
-    def is_subsequence(word):
-        i = j = 0
-        n, m = len(s), len(word)
-        while i < n and j < m:
-            if s[i] == word[j]:
-                j += 1
-            i += 1
-        return j == m
+import bisect
+
+def findLengthOfShortestSubarray(arr):
+    n = len(arr)
+    if n <= 1:
+        return 0
     
-    d_sorted = sorted(d, key=lambda x: (-len(x), x))
-    for word in d_sorted:
-        if is_subsequence(word):
-            return word
-    return ""
+    # Find the end of the longest non-decreasing prefix
+    left_end = 0
+    for i in range(1, n):
+        if arr[i] >= arr[i-1]:
+            left_end = i
+        else:
+            break
+    if left_end == n - 1:
+        return 0
+    
+    # Find the start of the longest non-decreasing suffix
+    right_start = n - 1
+    for i in range(n-2, -1, -1):
+        if arr[i] <= arr[i+1]:
+           
