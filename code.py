@@ -1,10 +1,22 @@
-def uniquePaths(m, n):
-    a = m + n - 2
-    k = min(m - 1, n - 1)
-    numerator = 1
-    for i in range(k):
-        numerator *= (a - i)
-    denominator = 1
-    for i in range(1, k + 1):
-        denominator *= i
-    return numerator // denominator
+import collections
+
+def predictPartyVictory(senate):
+    radiant = collections.deque()
+    dire = collections.deque()
+    n = len(senate)
+    for i, c in enumerate(senate):
+        if c == 'R':
+            radiant.append(i)
+        else:
+            dire.append(i)
+    
+    while radiant and dire:
+        r = radiant[0]
+        d = dire[0]
+        if r < d:
+            radiant.popleft()
+            dire.popleft()
+            radiant.append(r + n)
+        else:
+            dire.popleft()
+         
