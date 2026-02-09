@@ -1,19 +1,22 @@
-import sys
-import time
-import itertools
-from itertools import accumulate, product, permutations, combinations
-import collections
-from collections import Counter, OrderedDict, deque, defaultdict, ChainMap
-from functools import lru_cache
-import math
-from math import sqrt, sin, cos, tan, ceil, fabs, floor, gcd, exp, log, log2
-import fractions
-from typing import List, Tuple
-import numpy as np
-import random
-import heapq
-from heapq import *
-from dataclasses import dataclass
+def main():
+	n = int(input())
+	print(calculate(n))
 
-import builtins
-import re
+def helper(s):
+	if len(s) == 0:
+		return 1
+	num = int(s[0])
+	if num == 0:
+		return helper(s[1:])
+	elif num == 1:
+		return 2**(len(s) - 1) + helper(s[1:])
+	elif num >= 2:
+		return 2**len(s) 
+	else:
+		assert(False)
+
+def calculate(n):
+	return helper(str(n)) - 1
+
+main()
+#print(calculate(13402))
