@@ -1,20 +1,20 @@
-from collections import defaultdict, Counter
-
-def balancedString(s):
-    n = len(s)
-    target = n // 4
-    total_counts = Counter(s)
+def getMaxLen(nums):
+    segments = []
+    current = []
+    for num in nums:
+        if num == 0:
+            if current:
+                segments.append(current)
+                current = []
+        else:
+            current.append(num)
+    if current:
+        segments.append(current)
     
-    if all(total_counts[c] == target for c in 'QWER'):
-        return 0
-    
-    min_len = float('inf')
-    window_counts = defaultdict(int)
-    left = 0
-    
-    for right in range(n):
-        char = s[right]
-        window_counts[char] += 1
-        
-        while left <= right and all((total_counts[c] - window_counts.get(c, 0)) <= target for c in 'QWER'):
- 
+    max_length = 0
+    for seg in segments:
+        negatives = [i for i, x in enumerate(seg) if x < 0]
+        count = len(negatives)
+        if count % 2 == 0:
+            candidate = len(seg)
+        else:
