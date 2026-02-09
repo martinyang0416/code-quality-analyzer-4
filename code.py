@@ -11,17 +11,19 @@ def main():
 
     S = input[idx]
     idx += 1
-    specials = input[idx]
+    spec_str = input[idx]
     idx += 1
 
-    # Parse L and R indices
-    L_indices = []
-    R_indices = []
-    for i in range(2 * N):
-        if S[i] == 'L':
-            L_indices.append(i)
+    all_L = []
+    all_R = []
+    for i, c in enumerate(S):
+        if c == 'L':
+            all_L.append(i)
         else:
-            R_indices.append(i)
+            all_R.append(i)
 
-    # Compute ℓ and r arrays
-    ell = [(L_indices[i] + 1) for i i
+    # Precompute reach array
+    reach = [0] * N
+    for i in range(N):
+        r_i = all_R[i]
+        j = bis
