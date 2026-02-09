@@ -1,19 +1,13 @@
-s = input().strip()
-n = len(s)
-
-# Precompute prefix sums for 'b', 'e', 's', 'i'
-prefix_b = [0] * (n + 1)
-prefix_e = [0] * (n + 1)
-prefix_s = [0] * (n + 1)
-prefix_i = [0] * (n + 1)
-
-for i in range(n):
-    prefix_b[i+1] = prefix_b[i] + (1 if s[i] == 'b' else 0)
-    prefix_e[i+1] = prefix_e[i] + (1 if s[i] == 'e' else 0)
-    prefix_s[i+1] = prefix_s[i] + (1 if s[i] == 's' else 0)
-    prefix_i[i+1] = prefix_i[i] + (1 if s[i] == 'i' else 0)
-
-total = 0
-
-for i in range(n + 1):
-    for j in range(i + 1,
+def main():
+    import sys
+    N, K, T = map(int, sys.stdin.readline().split())
+    A = list(map(int, sys.stdin.readline().split()))
+    
+    # Initialize the position of each cow
+    pos_cow = list(range(N))  # pos_cow[p] = cow at position p
+    for _ in range(T):
+        current_active = [(a + _) % N for a in A]
+        # Get the current cows in those positions
+        current_cows = [pos_cow[p] for p in current_active]
+        # Rotate them: next_cow[i] = current_cows[i+1], with wrap-around
+ 
