@@ -1,20 +1,20 @@
-import sys
+n = int(input())
+s = input().strip()
 
-def main():
-    input = sys.stdin.read().split()
-    idx = 0
-    T = int(input[idx])
-    idx += 1
-    for _ in range(T):
-        N = int(input[idx])
-        idx +=1
-        nums = list(map(int, input[idx:idx+N]))
-        idx +=N
-        total = sum(nums)
-        if total % 2 == 0:
-            print("Yes")
-        else:
-            print("No")
+result = []
+used = set()
+current_start = 0
 
-if __name__ == "__main__":
-    main()
+while True:
+    max_char = None
+    max_pos = -1
+    # Iterate through the current segment to find the highest available character
+    for i in range(current_start, n):
+        c = s[i]
+        if c not in used:
+            if max_char is None or c > max_char:
+                max_char = c
+                max_pos = i
+    if max_char is None:
+        break  # No more characters can be added
+    result.append(max_char
