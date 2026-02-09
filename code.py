@@ -1,18 +1,15 @@
-def numFriendRequests(ages):
-    count = [0] * 121
-    for age in ages:
-        count[age] += 1
-    
-    total = 0
-    for a in range(1, 121):
-        if count[a] == 0:
-            continue
-        for b in range(1, 121):
-            if count[b] == 0:
-                continue
-            if (b <= 0.5 * a + 7) or (b > a) or (b > 100 and a < 100):
-                continue
-            if a == b:
-                total += count[a] * (count[a] - 1)
-            else:
-                total += count[a] *
+def longestArithSeqLength(A):
+    n = len(A)
+    if n <= 2:
+        return n
+    dp = [{} for _ in range(n)]
+    max_len = 2
+    for j in range(n):
+        for i in range(j):
+            d = A[j] - A[i]
+            prev = dp[i].get(d, 1)
+            current = prev + 1
+            dp[j][d] = max(current, dp[j].get(d, 0))
+            if dp[j][d] > max_len:
+                max_len = dp[j][d]
+    return max_len
