@@ -1,3 +1,14 @@
-a1, a2 = map(int, input().split())
-reversed_a2 = int(str(a2)[::-1])
-print(a1 + reversed_a2)
+a1, a2, a3 = map(int, input().split())
+n = a3 + 1
+
+if n == 1:
+    print(a1)
+elif n == 2:
+    print(a2)
+else:
+    prev_prev = a1
+    prev = a2
+    for _ in range(3, n + 1):
+        current = prev_prev + prev
+        prev_prev, prev = prev, current
+    print(current)
