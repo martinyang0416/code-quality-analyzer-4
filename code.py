@@ -1,18 +1,21 @@
-import bisect
+import sys
 
-def putaway(A, B, T, X, Y, W, S):
-    # Sort the weight and size limits of the robots
-    X_sorted = sorted(X)
-    Y_sorted = sorted(Y)
+def main():
+    A, B, T = map(int, sys.stdin.readline().split())
+    X = []
+    Y = []
+    if A > 0:
+        X = list(map(int, sys.stdin.readline().split()))
+    else:
+        sys.stdin.readline()  # consume empty line
+    if B > 0:
+        Y = list(map(int, sys.stdin.readline().split()))
+    else:
+        sys.stdin.readline()  # consume empty line
     
-    W_only = 0  # Toys that can only be handled by weak robots
-    S_only = 0  # Toys that can only be handled by small robots
-    Both = 0    # Toys that can be handled by either
-    
-    for i in range(T):
-        w = W[i]
-        s = S[i]
-        weak_ok = False
-        small_ok = False
-        
-        # Check if any weak robot can handle
+    W = []
+    S = []
+    for _ in range(T):
+        w, s = map(int, sys.stdin.readline().split())
+        W.append(w)
+        S.app
