@@ -1,21 +1,23 @@
-def has_subarray_sum(test_cases):
-    for case in test_cases:
-        M, Y, arr = case
-        current_sum = 0
-        seen = {0}
-        found = False
-        for num in arr:
-            current_sum += num
-            if (current_sum - Y) in seen:
-                found = True
-                break
-            seen.add(current_sum)
-        print("YES" if found else "NO")
+import bisect
+from collections import defaultdict
 
 def main():
     import sys
     input = sys.stdin.read().split()
     ptr = 0
-    K = int(input[ptr])
-    ptr += 1
-    test_cas
+    T = int(input[ptr])
+    ptr +=1
+    for _ in range(T):
+        S = input[ptr]
+        ptr +=1
+        Q = int(input[ptr])
+        ptr +=1
+        Ts = list(map(int, input[ptr:ptr+Q]))
+        ptr += Q
+        
+        n = len(S)
+        prefix = [0] * (n + 1)
+        for i in range(1, n+1):
+            if S[i-1] == 'a':
+                prefix[i] = prefix[i-1] + 1
+   
