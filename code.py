@@ -1,30 +1,19 @@
-'''
+import sys
+import time
+import itertools
+from itertools import accumulate, product, permutations, combinations
+import collections
+from collections import Counter, OrderedDict, deque, defaultdict, ChainMap
+from functools import lru_cache
 import math
+from math import sqrt, sin, cos, tan, ceil, fabs, floor, gcd, exp, log, log2
+import fractions
+from typing import List, Tuple
+import numpy as np
+import random
+import heapq
+from heapq import *
+from dataclasses import dataclass
 
-def BearAndBigBrother():
-    a, b = map(int, input().split(' '))
-    year = 0
-    while 1:
-        if a > b:
-            break
-        else:
-            a *= 3
-            b *= 2
-            year += 1
-    print(year)
-    return None
-
-def Tram():
-    n = int(input())
-    p = [0]
-    for i in range(1, n+1):
-        a, b = map(int, input().split())
-        tmp = p[i-1]
-        tmp -= a
-        tmp += b
-        p.append(tmp)
-    print(max(p))
-    return None
-
-
-def WrongSubtraction()
+import builtins
+import re
