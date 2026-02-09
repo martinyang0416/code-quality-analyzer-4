@@ -1,22 +1,16 @@
-vp = int(input())
-vd = int(input())
-t = int(input())
-f = int(input())
-c = int(input())
+import math
 
-if vp >= vd:
-    print(0)
+n = int(input())
+sum_a = 0
+for _ in range(n):
+    a, g = map(int, input().split())
+    sum_a += a
+
+lower_k = max(0, math.ceil((sum_a - 500) / 1000))
+upper_k = min(n, math.floor((sum_a + 500) / 1000))
+
+if lower_k > upper_k:
+    print(-1)
 else:
-    current = vp * t
-    if current >= c:
-        print(0)
-    else:
-        bijous = 0
-        while True:
-            time_catch = current / (vd - vp)
-            position_meet = current + vp * time_catch
-            if position_meet >= c:
-                break
-            bijous += 1
-            time_away = (position_meet / vd) + f
-            current = position_meet + vp * 
+    k = lower_k
+    print('G' * k + 'A' * (n - k))
