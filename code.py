@@ -1,20 +1,19 @@
-import sys
+s = input().strip()
+n = len(s)
 
-def main():
-    s = sys.stdin.read().strip()
-    T = 'bessie'
-    n = len(s)
-    current_state = 0
-    completed = 0
-    cnt = [0] * (n + 1)  # cnt[i] is the number of completions after first i characters
+# Precompute prefix sums for 'b', 'e', 's', 'i'
+prefix_b = [0] * (n + 1)
+prefix_e = [0] * (n + 1)
+prefix_s = [0] * (n + 1)
+prefix_i = [0] * (n + 1)
 
-    for i in range(n):
-        if s[i] == T[current_state]:
-            current_state += 1
-            if current_state == len(T):
-                completed += 1
-                current_state = 0  # reset for next possible "bessie"
-        cnt[i + 1] = completed
+for i in range(n):
+    prefix_b[i+1] = prefix_b[i] + (1 if s[i] == 'b' else 0)
+    prefix_e[i+1] = prefix_e[i] + (1 if s[i] == 'e' else 0)
+    prefix_s[i+1] = prefix_s[i] + (1 if s[i] == 's' else 0)
+    prefix_i[i+1] = prefix_i[i] + (1 if s[i] == 'i' else 0)
 
-    sum1 = 0
-    f
+total = 0
+
+for i in range(n + 1):
+    for j in range(i + 1,
