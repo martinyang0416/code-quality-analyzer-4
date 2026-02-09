@@ -1,16 +1,17 @@
-import math
+import sys
 
-n = int(input())
-a = list(map(int, input().split()))
-t = int(input())
+def main():
+    T = int(sys.stdin.readline())
+    for _ in range(T):
+        n = int(sys.stdin.readline())
+        l = int(sys.stdin.readline())
+        # Read the edges but ignore them
+        for _ in range(l):
+            u, v = map(int, sys.stdin.readline().split())
+        if l > n - 1:
+            print("CYCLE DETECTED.")
+        else:
+            print("NO CYCLE.")
 
-for _ in range(t):
-    l, r = map(int, input().split())
-    start = l - 1
-    end = r - 1
-    count = 0
-    for i in range(start, end + 1):
-        for j in range(i + 1, end + 1):
-            if math.gcd(a[i], a[j]) > 1:
-                count += 1
-    print(count)
+if __name__ == "__main__":
+    main()
