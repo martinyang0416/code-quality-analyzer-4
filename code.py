@@ -1,17 +1,20 @@
-n, r = map(int, input().split())
-f_list = list(map(int, input().split()))
-e_list = list(map(int, input().split()))
+import bisect
 
-deltas = [f - r * e for f, e in zip(f_list, e_list)]
-
-dp = {0: 0}  # Maps sum of deltas to the maximum sum of e
-
-for delta, e in zip(deltas, e_list):
-    current_states = list(dp.items())
-    for s, current_e in current_states:
-        new_s = s + delta
-        new_e = current_e + e
-        if new_s in dp:
-            if new_e > dp[new_s]:
-                dp[new_s] = new_e
-        
+def minimal_operations():
+    n, m = map(int, input().split())
+    seq1 = list(map(int, input().split()))
+    seq2 = list(map(int, input().split()))
+    
+    seq1.sort()
+    seq2.sort()
+    
+    prefix1 = [0] * (n + 1)
+    for i in range(n):
+        prefix1[i + 1] = prefix1[i] + seq1[i]
+    
+    prefix2 = [0] * (m + 1)
+    for i in range(m):
+        prefix2[i + 1] = prefix2[i] + seq2[i]
+    
+    def compute_cost(X):
+        # Calculate cost for seq1: sum(max(0, a - X) for a in seq
