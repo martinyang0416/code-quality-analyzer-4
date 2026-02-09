@@ -1,26 +1,21 @@
-MOD = 10**6 + 3
-max_fact = MOD - 1
-fact = [1] * (max_fact + 1)
+mod_val = 1 << 58
 
-for i in range(1, max_fact + 1):
-    fact[i] = fact[i-1] * i % MOD
+def multiply(a, b):
+    res = [0] * 10
+    for i in range(10):
+        if a[i] == 0:
+            continue
+        for j in range(10):
+            if b[j] == 0:
+                continue
+            k = (i + j) % 10
+            res[k] = (res[k] + a[i] * b[j]) % mod_val
+    return res
 
-import sys
-
-input = sys.stdin.read
-data = input().split()
-T = int(data[0])
-index = 1
-
-results = []
-for _ in range(T):
-    N = int(data[index])
-    X = int(data[index+1])
-    index += 2
-    if N >= MOD:
-        results.append(0)
-    else:
-        res = (X % MOD) * fact[N] % MOD
-        results.append(res)
-
-sys.stdout.write('\n'.join(map(str, results)) + '\n')
+def power(poly, exponent):
+    result = [0] * 10
+    result[0] = 1
+    while exponent > 0:
+        if exponent % 2 == 1:
+            result = multiply(result, poly)
+        poly = multiply(poly, po
