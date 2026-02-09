@@ -1,25 +1,21 @@
-import bisect
+import sys
 
 def main():
-    import sys
-    input = sys.stdin.read
-    data = input().split()
+    input = sys.stdin.read().split()
     idx = 0
-    c = int(data[idx])
-    idx +=1
-    results = []
-    for _ in range(c):
-        n = int(data[idx])
-        m = int(data[idx+1])
-        T = int(data[idx+2])
-        idx +=3
-        p = list(map(int, data[idx:idx+n]))
-        idx +=n
+    t = int(input[idx])
+    idx += 1
+    for _ in range(t):
+        m = int(input[idx])
+        y = int(input[idx+1])
+        idx += 2
+        b = list(map(int, input[idx:idx+m]))
+        idx += m
         
-        p.sort()
-        prefix = [0]
-        current = 0
-        for num in p:
-            current += num
-            prefix.append(current)
-     
+        even_count = 0
+        for num in b:
+            if num % 2 == 0:
+                even_count += 1
+        odd_count = m - even_count
+        
+        # Calculate the minimum and maximum possible number of odds (o)
