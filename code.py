@@ -1,10 +1,18 @@
-import re
-
-class Solution:
-    def isNumber(self, s: str) -> bool:
-        s = s.strip()
-        if not s:
-            return False
-        # Regular expression pattern to match valid numbers
-        pattern = r'^[+-]?((\d+\.?\d*)|(\.\d+))([eE][+-]?\d+)?$'
-        return re.fullmatch(pattern, s) is not None
+def tallestBillboard(rods):
+    dp = {0: 0}
+    for rod in rods:
+        new_dp = dict(dp)
+        for d, s in dp.items():
+            # Adding to left
+            new_d = d + rod
+            new_s = s + rod
+            if new_d in new_dp:
+                if new_s > new_dp[new_d]:
+                    new_dp[new_d] = new_s
+            else:
+                new_dp[new_d] = new_s
+            # Adding to right
+            new_d = d - rod
+            new_s = s + rod
+            if new_d in new_dp:
+  
