@@ -1,9 +1,12 @@
-def minOperations(target):
-    res = 0
-    prev = 0
-    for num in target:
-        diff = num - prev
-        if diff > 0:
-            res += diff
-        prev = num
-    return res
+def reverseParentheses(s: str) -> str:
+    stack = []
+    current_str = ''
+    for char in s:
+        if char == '(':
+            stack.append(current_str)
+            current_str = ''
+        elif char == ')':
+            current_str = stack.pop() + current_str[::-1]
+        else:
+            current_str += char
+    return current_str
