@@ -1,21 +1,22 @@
-import sys
+n, m = map(int, input().split())
 
-for line in sys.stdin:
-    line = line.strip()
-    if not line:
-        continue
-    n = int(line)
-    if n == 0:
-        break
-    arr = []
-    for _ in range(n):
-        num = int(sys.stdin.readline().strip())
-        arr.append(num)
-    swap_count = 0
-    unsorted_len = n
-    while unsorted_len > 1:
-        for j in range(unsorted_len - 1):
-            if arr[j] > arr[j + 1]:
-                arr[j], arr[j + 1] = arr[j + 1], arr[j]
-                swap_count += 1
-        unsorted_l
+if m == 0:
+    print(0 if n == 1 else -1)
+else:
+    parent = list(range(n + 1))  # 1-based indexing
+
+    def find(u):
+        while parent[u] != u:
+            parent[u] = parent[parent[u]]  # Path compression
+            u = parent[u]
+        return u
+
+    def union(u, v):
+        u_root = find(u)
+        v_root = find(v)
+        if u_root != v_root:
+            parent[v_root] = u_root
+
+    for _ in range(m):
+        u, v, w = map(int, input().split())
+        
