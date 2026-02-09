@@ -1,9 +1,5 @@
-s = input().strip()
-result = []
-for c in s:
-    digit = int(c)
-    if digit % 2 == 0:
-        result.append(f'({c})')
-    else:
-        result.append(c)
-print(''.join(result))
+n = int(input())
+arr = list(map(int, input().split()))
+sum_ = sum(arr)
+sum_abs = abs(sum_)
+print(int(str(sum_abs)[0]))
