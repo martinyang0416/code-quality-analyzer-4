@@ -1,19 +1,31 @@
-import sys
-from math import gcd
-from collections import Counter
+n, k = map(int, input().split())
+s = input().strip()
 
-def main():
-    S = sys.stdin.readline().strip()
-    Q = int(sys.stdin.readline())
-    for _ in range(Q):
-        l, r, t = map(int, sys.stdin.readline().split())
-        # Convert to 0-based indices
-        substring = S[l-1:r]  # because r is exclusive in Python's slice
-        n = len(substring)
-        if t == 0:
-            print("No")
-            continue
-        if n == 0:
-            print("Yes")
-            continue
-      
+if n == 0:
+    print(0)
+    exit()
+
+# Create runs list
+runs = []
+current = s[0]
+count = 1
+for c in s[1:]:
+    if c == current:
+        count += 1
+    else:
+        runs.append((current, count))
+        current = c
+        count = 1
+runs.append((current, count))
+
+max_len = 0
+current_sum = 0
+b_count = 0
+left = 0
+
+for right in range(len(runs)):
+    char, length = runs[right]
+    if char == 'b':
+        b_count += 1
+    current_sum += length
+    
