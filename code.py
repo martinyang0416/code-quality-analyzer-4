@@ -1,24 +1,22 @@
-n = int(input())
-parts = {}
-for _ in range(n):
-    part, cost = input().split()
-    cost = int(cost)
-    parts[part] = cost
+def min_jumps(x, y):
+    if x == 0 and y == 0:
+        return 0
+    if x != y:
+        return -1  # As per initial analysis, but sample contradicts
+    n = 0
+    total = 0
+    while True:
+        n += 1
+        total += n
+        if total >= x:
+            diff = total - x
+            if diff % 1 == 0:
+                return n
+        if total > x + n:
+            break
+    return -1  # Or handle differently
 
-m = int(input())
-assembly = {}
-for _ in range(m):
-    # Split the line into machine, k, and components
-    parts_line = input().split()
-    machine = parts_line[0]
-    k = int(parts_line[1])
-    components = parts_line[2:2 + k]
-    assembly[machine] = components
-
-target = input().strip()
-
-computed = {}
-
-def compute_min(part):
-    if part in computed:
-        return compute
+t = int(input())
+for _ in range(t):
+    x, y = map(int, input().split())
+    print(min_
