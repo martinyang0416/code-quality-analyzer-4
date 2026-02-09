@@ -1,24 +1,23 @@
-import bisect
+def is_sorted(arr, inc):
+    for i in range(len(arr)-1):
+        if inc:
+            if arr[i] > arr[i+1]:
+                return False
+        else:
+            if arr[i] < arr[i+1]:
+                return False
+    return True
 
-class BIT:
-    def __init__(self, size):
-        self.n = size
-        self.tree = [0] * (self.n + 2)
-    
-    def update(self, idx, delta):
-        while idx <= self.n:
-            self.tree[idx] += delta
-            idx += idx & -idx
-    
-    def query(self, idx):
-        res = 0
-        while idx > 0:
-            res += self.tree[idx]
-            idx -= idx & -idx
-        return res
+n = int(input())
+a = list(map(int, input().split()))
 
-def find_min_available(a, b, bit):
-    low = a
-    high = b
-    res = -1
-    while low <= high:
+sorted_inc = is_sorted(a, True)
+sorted_dec = is_sorted(a, False)
+
+if sorted_inc or sorted_dec:
+    all_same = True
+    for num in a[1:]:
+        if num != a[0]:
+            all_same = False
+            break
+    if a
