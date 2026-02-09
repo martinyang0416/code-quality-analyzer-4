@@ -1,9 +1,15 @@
-def brokenCalc(X, Y):
-    steps = 0
-    while Y > X:
-        if Y % 2:
-            Y += 1
-            steps += 1
-        Y //= 2
-        steps += 1
-    return steps + (X - Y)
+def searchMatrix(matrix, target):
+    if not matrix or not matrix[0]:
+        return False
+    m, n = len(matrix), len(matrix[0])
+    left, right = 0, m * n - 1
+    while left <= right:
+        mid = (left + right) // 2
+        row, col = mid // n, mid % n
+        if matrix[row][col] == target:
+            return True
+        elif matrix[row][col] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+    return False
