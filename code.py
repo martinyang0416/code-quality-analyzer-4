@@ -1,24 +1,25 @@
-n = int(input())
-matrix = []
-for _ in range(n):
-    row = list(map(int, input().split()))
-    matrix.append(row)
+import heapq
 
-# Collect all non-zero elements from the matrix (excluding diagonal)
-S = set()
-for i in range(n):
-    for j in range(n):
-        if i != j:
-            S.add(matrix[i][j])
+n, m = map(int, input().split())
+reversed_adj = [[] for _ in range(n+1)]
+in_degree = [0] * (n+1)
 
-# Determine M as the missing number in 1..n
-M = None
-for num in range(1, n+1):
-    if num not in S:
-        M = num
-        break
+for _ in range(m):
+    u, v = map(int, input().split())
+    reversed_adj[v].append(u)
+    in_degree[u] += 1
 
-K = max(S)  # Second maximum element
+heap = []
+for i in range(1, n+1):
+    if in_degree[i] == 0:
+        heapq.heappush(heap, -i)
 
-# Calculate row_max for each row
-row_max = [
+labels = [0] * (n+1)
+current_label = n
+
+while heap:
+    node = -heapq.heappop(heap)
+    labels[node] = current_label
+    current_label -= 1
+    for neighbor in reversed_adj[node]:
+     
