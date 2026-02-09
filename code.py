@@ -1,16 +1,25 @@
-# Cumulative distance for each IC (1-7)
-cumulative_distance = [0, 5, 15, 17, 30, 45, 58]
-# Cumulative fare for each IC (1-7)
-cumulative_fare = [0, 250, 500, 700, 950, 1300, 2000]
+days_order = {
+    'Sunday': 0,
+    'Monday': 1,
+    'Tuesday': 2,
+    'Wednesday': 3,
+    'Thursday': 4,
+    'Friday': 5,
+    'Saturday': 6
+}
 
-while True:
-    d_line = input().strip()
-    if d_line == '0':
-        break
-    d = int(d_line) - 1  # Convert to 0-based index
-    hd, md = map(int, input().split())
-    a = int(input().strip()) - 1
-    ha, ma = map(int, input().split())
-    
-    # Calculate distance and fare
-    distance = abs(cumulative_distance[a]
+def main():
+    import sys
+    input = sys.stdin.read().split('\n')
+    ptr = 0
+    while True:
+        line = input[ptr].strip()
+        while not line:
+            ptr += 1
+            line = input[ptr].strip()
+        if line == '0 0':
+            break
+        N, W = map(int, line.split())
+        ptr += 1
+        pupils = []
+        possible = True
