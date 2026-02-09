@@ -1,24 +1,23 @@
-import math
+import sys
+from collections import defaultdict, deque
 
-n, px, py = map(int, input().split())
-vertices = [tuple(map(int, input().split())) for _ in range(n)]
+sys.setrecursionlimit(1 << 25)
 
-max_dist_sq = 0
-min_dist_sq = float('inf')
+def main():
+    n = int(sys.stdin.readline())
+    if n % 2 != 0:
+        print(0)
+        return
 
-for x, y in vertices:
-    dx = x - px
-    dy = y - py
-    dist_sq = dx * dx + dy * dy
-    max_dist_sq = max(max_dist_sq, dist_sq)
-    min_dist_sq = min(min_dist_sq, dist_sq)
+    edges = [[] for _ in range(n+1)]
+    for _ in range(n-1):
+        a, b = map(int, sys.stdin.readline().split())
+        edges[a].append(b)
+        edges[b].append(a)
 
-for i in range(n):
-    a = vertices[i]
-    b = vertices[(i + 1) % n]
-    ax, ay = a
-    bx, by = b
-    abx = bx - ax
-    aby = by - ay
-    apx = px - ax
-    apy = py
+    parent = [0]*(n+1)
+    children = [[] for _ in range(n+1)]
+    visited = [False]*(n+1)
+    q = deque([1])
+    visited[1] = True
+    while q:
