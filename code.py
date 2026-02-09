@@ -1,23 +1,19 @@
-def meuIn(num, valores):
-    for i in valores:
-        if(i == num):
-            return True
-        if(i > num):
-            return False
-    return False
+import sys
+import time
+import itertools
+from itertools import accumulate, product, permutations, combinations
+import collections
+from collections import Counter, OrderedDict, deque, defaultdict, ChainMap
+from functools import lru_cache
+import math
+from math import sqrt, sin, cos, tan, ceil, fabs, floor, gcd, exp, log, log2
+import fractions
+from typing import List, Tuple
+import numpy as np
+import random
+import heapq
+from heapq import *
+from dataclasses import dataclass
 
-def verificaValores(valores):
-
-    if(not meuIn(1, valores)):
-        return 1
-
-    return -1
-
-num = int(input())
-entrada = input().split()
-
-valores = [int(valor) for valor in entrada]
-valores.sort()
-
-print(verificaValores(valores))
-	 	 		  	  			 	  	 	 		 	  	 	
+import builtins
+import re
