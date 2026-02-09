@@ -1,17 +1,20 @@
-MOD = 10**9 + 7
-inv25 = pow(25, MOD-2, MOD)
+n, m, k = map(int, input().split())
+p = list(map(int, input().split()))
+s = list(map(int, input().split()))
+chosen = list(map(int, input().split()))
 
-T = int(input())
-for _ in range(T):
-    N = int(input())
-    m_odd = (N + 1) // 2
-    m_even = N // 2
-    
-    pow_odd = pow(26, m_odd + 1, MOD)
-    sum_odd = (pow_odd - 26) * inv25 % MOD
-    
-    pow_even = pow(26, m_even + 1, MOD)
-    sum_even = (pow_even - 26) * inv25 % MOD
-    
-    total = (sum_odd + sum_even) % MOD
-    print(total)
+max_in_school = {}
+for i in range(n):
+    school = s[i]
+    power = p[i]
+    if school not in max_in_school or power > max_in_school[school]:
+        max_in_school[school] = power
+
+count = 0
+for c in chosen:
+    idx = c - 1
+    school = s[idx]
+    if p[idx] < max_in_school.get(school, 0):
+        count += 1
+
+print(count)
