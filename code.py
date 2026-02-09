@@ -1,18 +1,16 @@
-def tallestBillboard(rods):
-    dp = {0: 0}
-    for rod in rods:
-        new_dp = dict(dp)
-        for d, s in dp.items():
-            # Adding to left
-            new_d = d + rod
-            new_s = s + rod
-            if new_d in new_dp:
-                if new_s > new_dp[new_d]:
-                    new_dp[new_d] = new_s
-            else:
-                new_dp[new_d] = new_s
-            # Adding to right
-            new_d = d - rod
-            new_s = s + rod
-            if new_d in new_dp:
-  
+def nthUglyNumber(n):
+    ugly = [1]
+    i2 = i3 = i5 = 0
+    for _ in range(n-1):
+        next2 = ugly[i2] * 2
+        next3 = ugly[i3] * 3
+        next5 = ugly[i5] * 5
+        next_min = min(next2, next3, next5)
+        ugly.append(next_min)
+        if next_min == next2:
+            i2 += 1
+        if next_min == next3:
+            i3 += 1
+        if next_min == next5:
+            i5 += 1
+    return ugly[-1]
