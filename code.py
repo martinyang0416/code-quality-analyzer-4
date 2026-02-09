@@ -1,19 +1,20 @@
-import sys
-import time
-import itertools
-from itertools import accumulate, product, permutations, combinations
-import collections
-from collections import Counter, OrderedDict, deque, defaultdict, ChainMap
-from functools import lru_cache
-import math
-from math import sqrt, sin, cos, tan, ceil, fabs, floor, gcd, exp, log, log2
-import fractions
-from typing import List, Tuple
-import numpy as np
-import random
-import heapq
-from heapq import *
-from dataclasses import dataclass
+def is_palindrome(s):
+    return s == s[::-1]
 
-import builtins
-import re
+T = int(input())
+for _ in range(T):
+    s = input().strip()
+    if is_palindrome(s):
+        print("YES")
+        continue
+    left = 0
+    right = len(s) - 1
+    found = False
+    while left < right:
+        if s[left] == s[right]:
+            left += 1
+            right -= 1
+        else:
+            # Check two possibilities: delete left or delete right
+            s1 = s[left+1 : right+1]  # Delete left character
+            s2 = s[left : right]
