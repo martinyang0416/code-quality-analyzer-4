@@ -1,11 +1,17 @@
-def countVowelPermutation(n: int) -> int:
-    mod = 10**9 + 7
-    a, e, i, o, u = 1, 1, 1, 1, 1
-    for _ in range(n - 1):
-        a_new = (e + i + u) % mod
-        e_new = (a + i) % mod
-        i_new = (e + o) % mod
-        o_new = i % mod
-        u_new = (i + o) % mod
-        a, e, i, o, u = a_new, e_new, i_new, o_new, u_new
-    return (a + e + i + o + u) % mod
+def getMaxRepetitions(s1, n1, s2, n2):
+    len_s2 = len(s2)
+    if len_s2 == 0:
+        return 0
+    
+    # Precompute transitions for each starting position in s2
+    transition = {}
+    for p_start in range(len_s2):
+        current_p = p_start
+        count = 0
+        for c in s1:
+            if c == s2[current_p]:
+                current_p += 1
+                if current_p == len_s2:
+                    count += 1
+                    current_p = 0
+        transition[p_start] = (count, curren
