@@ -1,25 +1,24 @@
-MOD = 10**9 + 7
+n = int(input())
+parts = {}
+for _ in range(n):
+    part, cost = input().split()
+    cost = int(cost)
+    parts[part] = cost
 
-def main():
-    import sys
-    N, K, P = map(int, sys.stdin.readline().split())
-    B = list(map(int, sys.stdin.readline().split()))
-    
-    if N != 2 * K:
-        print(0)
-        return
-    
-    if P > N:
-        print(0)
-        return
-    
-    from collections import defaultdict
-    count_B = defaultdict(int)
-    for num in B:
-        if num < 1 or num > K:
-            print(0)
-            return
-        count_B[num] += 1
-    
-    for num in count_B:
-        if count_B[num]
+m = int(input())
+assembly = {}
+for _ in range(m):
+    # Split the line into machine, k, and components
+    parts_line = input().split()
+    machine = parts_line[0]
+    k = int(parts_line[1])
+    components = parts_line[2:2 + k]
+    assembly[machine] = components
+
+target = input().strip()
+
+computed = {}
+
+def compute_min(part):
+    if part in computed:
+        return compute
