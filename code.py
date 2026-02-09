@@ -1,26 +1,12 @@
 n = int(input())
-x1, x2 = map(int, input().split())
-functions = []
+scores = list(map(int, input().split()))
+sorted_scores = sorted(scores, reverse=True)
+rank_dict = {}
 
-for _ in range(n):
-    a, b, c = map(int, input().split())
-    functions.append((a, b, c))
+for i, s in enumerate(sorted_scores):
+    if s not in rank_dict:
+        rank_dict[s] = i + 1
 
-# Check for identical functions
-seen = set()
-for a, b, c in functions:
-    if (a, b, c) in seen:
-        print("YES")
-        exit()
-    seen.add((a, b, c))
-
-u = []
-v = []
-
-for a, b, c in functions:
-    u_i = a * (x1 ** 2) + b * x1 + c
-    v_i = a * (x2 ** 2) + b * x2 + c
-    u.append(u_i)
-    v.append(v_i)
-
-# Check if any two functions s
+print("Yes")
+for s in scores:
+    print(rank_dict[s])
