@@ -1,22 +1,28 @@
-n, p = map(int, input().split())
+import heapq
 
-def factorize(x):
-    factors = {}
-    i = 2
-    while i * i <= x:
-        while x % i == 0:
-            factors[i] = factors.get(i, 0) + 1
-            x = x // i
-        i += 1
-    if x > 1:
-        factors[x] = 1
-    return factors
+def main():
+    import sys
+    input = sys.stdin.read
+    data = input().split()
+    idx = 0
+    n = int(data[idx])
+    idx += 1
+    m = int(data[idx])
+    idx += 1
+    s = int(data[idx])
+    idx += 1
+    t = int(data[idx])
+    idx += 1
+    u = int(data[idx])
+    idx += 1
+    v = int(data[idx])
+    idx += 1
 
-factors = factorize(p)
-result = 1
-for prime, exp in factors.items():
-    cnt = exp // n
-    if cnt > 0:
-        result *= prime ** cnt
-
-print(result)
+    edges = [[] for _ in range(n + 1)]
+    original_edges = []
+    for _ in range(m):
+        a = int(data[idx])
+        idx += 1
+        b = int(data[idx])
+        idx += 1
+  
