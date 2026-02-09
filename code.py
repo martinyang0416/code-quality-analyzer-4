@@ -1,12 +1,20 @@
-from collections import defaultdict
+from collections import defaultdict, Counter
 
-def maxFreq(s: str, maxLetters: int, minSize: int, maxSize: int) -> int:
-    count = defaultdict(int)
+def balancedString(s):
     n = len(s)
-    min_len = minSize  # Focus on minSize to optimize
-    for i in range(n - min_len + 1):
-        substr = s[i:i+min_len]
-        unique_chars = len(set(substr))
-        if unique_chars <= maxLetters:
-            count[substr] += 1
-    return max(count.values()) if count else 0
+    target = n // 4
+    total_counts = Counter(s)
+    
+    if all(total_counts[c] == target for c in 'QWER'):
+        return 0
+    
+    min_len = float('inf')
+    window_counts = defaultdict(int)
+    left = 0
+    
+    for right in range(n):
+        char = s[right]
+        window_counts[char] += 1
+        
+        while left <= right and all((total_counts[c] - window_counts.get(c, 0)) <= target for c in 'QWER'):
+ 
