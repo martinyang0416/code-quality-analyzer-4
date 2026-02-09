@@ -1,19 +1,18 @@
-import sys
-import time
-import itertools
-from itertools import accumulate, product, permutations, combinations
 import collections
-from collections import Counter, OrderedDict, deque, defaultdict, ChainMap
-from functools import lru_cache
-import math
-from math import sqrt, sin, cos, tan, ceil, fabs, floor, gcd, exp, log, log2
-import fractions
-from typing import List, Tuple
-import numpy as np
-import random
-import heapq
-from heapq import *
-from dataclasses import dataclass
 
-import builtins
-import re
+def solve():
+    N=int(input())
+    A=list(map(int,input().split()))
+    c=collections.Counter(A)
+    max_count = sorted(c.values(), reverse=True)[0]
+    max_key = [k for k in c.keys() if c[k] == max_count][0]
+    pivot = A.index(max_key)
+    ans=[]
+    for i in range(pivot-1, -1, -1):
+        if A[i]<max_key:
+            ans.append([1,i+1,i+2])
+        else:
+            ans.append([2,i+1,i+2])
+    #print(max_key,pivot)
+    for i in range(pivot+1, N):
+        if A[i]==max_key
