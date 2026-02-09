@@ -1,27 +1,18 @@
+import bisect
+
 def putaway(A, B, T, X, Y, W, S):
-    if T == 0:
-        return 0
-
-    max_x = -1
-    if A > 0:
-        max_x = max(X)
-    max_y = -1
-    if B > 0:
-        max_y = max(Y)
-
-    count_w_only = 0
-    count_s_only = 0
-    count_both = 0
-
+    # Sort the weight and size limits of the robots
+    X_sorted = sorted(X)
+    Y_sorted = sorted(Y)
+    
+    W_only = 0  # Toys that can only be handled by weak robots
+    S_only = 0  # Toys that can only be handled by small robots
+    Both = 0    # Toys that can be handled by either
+    
     for i in range(T):
-        can_weak = False
-        if A > 0:
-            can_weak = W[i] < max_x
-        can_small = False
-        if B > 0:
-            can_small = S[i] < max_y
-
-        if not can_weak and not can_small:
-            return -1
-
-        if can_w
+        w = W[i]
+        s = S[i]
+        weak_ok = False
+        small_ok = False
+        
+        # Check if any weak robot can handle
