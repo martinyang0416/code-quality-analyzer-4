@@ -1,21 +1,22 @@
-def get_char(n, k):
-    f0 = "What are you doing at the end of the world? Are you busy? Will you save us?"
-    L0 = 75
-    
-    if n == 0:
-        if k <= L0:
-            return f0[k-1]
-        else:
-            return '.'
-    
-    # Compute L_{n-1} iteratively to avoid recursion
-    L_prev = L0
-    for i in range(1, n):
-        L_prev = 2 * L_prev + 68
-    current_L = 2 * L_prev + 68
-    
-    if k > current_L:
-        return '.'
-    
-    A_len = 33
-    first_part_len = A_len + (1 + L_prev + 1 +
+def putaway(A, B, T, X, Y, W, S):
+    import sys
+    if T == 0:
+        return 0  # Not possible per problem constraints, but handled.
+
+    max_x = -sys.maxsize
+    if A > 0:
+        max_x = max(X)
+    max_y = -sys.maxsize
+    if B > 0:
+        max_y = max(Y)
+
+    O_w = 0
+    O_s = 0
+    M = 0
+
+    for i in range(T):
+        can_weak = (A > 0) and (W[i] < max_x)
+        can_small = (B > 0) and (S[i] < max_y)
+        if not can_weak and not can_small:
+            return -1
+        if can_weak and
