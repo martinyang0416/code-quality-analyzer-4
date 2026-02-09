@@ -1,23 +1,23 @@
-import sys
+n, k = map(int, input().split())
+events = []
+for _ in range(n):
+    l, r = map(int, input().split())
+    events.append((l, 1))
+    events.append((r + 1, -1))
 
-def can_reach_end(n, k, r):
-    # Check left path
-    current = 0
-    left_possible = True
-    for i in range(k-1, 0, -1):
-        current += r[i-1]
-        if current < 0:
-            left_possible = False
-            break
-    if left_possible:
-        return True
-    
-    # Check right path
-    current = 0
-    right_possible = True
-    for i in range(k+1, n+1):
-        if i > n:
-            break
-        current += r[i-1]
-        if current < 0:
-            right_possible = False
+events.sort()
+
+result = 0
+current_coverage = 0
+prev_x = None
+
+MOD = 10**9 + 7
+
+for x, delta in events:
+    if prev_x is not None and x > prev_x:
+        if current_coverage >= k:
+            result += (x - prev_x)
+    current_coverage += delta
+    prev_x = x
+
+print(result % MOD)
