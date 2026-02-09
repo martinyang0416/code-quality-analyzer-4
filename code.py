@@ -1,16 +1,14 @@
-n = int(input())
-d = list(map(int, input().split()))
-
-min_max = float('inf')
-
-for i in range(1, n - 1):
-    new_d = d[:i] + d[i+1:]
-    current_max = 0
-    for j in range(len(new_d) - 1):
-        diff = new_d[j+1] - new_d[j]
-        if diff > current_max:
-            current_max = diff
-    if current_max < min_max:
-        min_max = current_max
-
-print(min_max)
+T = int(input())
+for _ in range(T):
+    N = int(input())
+    activities = input().split()
+    valid = True
+    for i in range(N):
+        if activities[i] == "collect":
+            if i == N - 1:
+                valid = False
+                break
+            if activities[i+1] != "sort":
+                valid = False
+                break
+    print("YES" if valid else "NO")
