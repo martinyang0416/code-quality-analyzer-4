@@ -1,17 +1,15 @@
-def evalRPN(tokens):
-    stack = []
-    for token in tokens:
-        if token in '+-*/':
-            b = stack.pop()
-            a = stack.pop()
-            if token == '+':
-                stack.append(a + b)
-            elif token == '-':
-                stack.append(a - b)
-            elif token == '*':
-                stack.append(a * b)
-            elif token == '/':
-                stack.append(int(a / b))
-        else:
-            stack.append(int(token))
-    return stack.pop()
+from collections import deque
+from typing import List
+
+class Solution:
+    def maxCandies(self, status: List[int], candies: List[int], keys: List[List[int]], containedBoxes: List[List[int]], initialBoxes: List[int]) -> int:
+        available_boxes = set(initialBoxes)
+        available_keys = set()
+        processed = set()
+        queue = deque()
+        
+        for box in initialBoxes:
+            if status[box] == 1 or box in available_keys:
+                queue.append(box)
+        
+        
