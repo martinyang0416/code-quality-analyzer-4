@@ -1,17 +1,20 @@
-from collections import deque
+import sys
 
 def main():
-    s = input().strip()
-    target = list("bessie")  # The target sequence to form
+    s = sys.stdin.read().strip()
+    T = 'bessie'
     n = len(s)
-    steps = [deque() for _ in range(7)]  # steps[0] to steps[6]
-    completed = []
+    current_state = 0
+    completed = 0
+    cnt = [0] * (n + 1)  # cnt[i] is the number of completions after first i characters
 
-    for R in range(n):
-        c = s[R]
-        # Process the current character for each possible step backward
-        for i in range(5, -1, -1):
-            if c == target[i]:
-                if steps[i]:
-                    start = steps[i].popleft()
-                    i
+    for i in range(n):
+        if s[i] == T[current_state]:
+            current_state += 1
+            if current_state == len(T):
+                completed += 1
+                current_state = 0  # reset for next possible "bessie"
+        cnt[i + 1] = completed
+
+    sum1 = 0
+    f
