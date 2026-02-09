@@ -1,16 +1,19 @@
-def maxSideLength(mat, threshold):
-    m = len(mat)
-    n = len(mat[0])
-    # Create prefix sum matrix
-    prefix = [[0] * (n + 1) for _ in range(m + 1)]
-    for i in range(1, m + 1):
-        for j in range(1, n + 1):
-            prefix[i][j] = mat[i-1][j-1] + prefix[i-1][j] + prefix[i][j-1] - prefix[i-1][j-1]
+from itertools import product
+
+def flipLights(n, m):
+    if n == 0:
+        return 0
+    present_classes = set()
+    for i in range(1, n + 1):
+        parity = i % 2
+        mod3 = (i - 1) % 3
+        present_classes.add((parity, mod3))
+    present_classes = sorted(present_classes)
+    unique_states = set()
     
-    max_k = 0
-    low, high = 1, min(m, n)
-    while low <= high:
-        mid = (low + high) // 2
-        found = False
-        # Check all possible squares of size mid x mid
-        
+    for a, b, c, d in product([0, 1], repeat=4):
+        s = a + b + c + d
+        if s > m or (m - s) % 2 != 0:
+            continue
+        masks = []
+        for (p, m3) in present_cl
