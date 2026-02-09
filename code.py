@@ -1,7 +1,5 @@
 a = input().strip()
-count = 0
-for c in a:
-    digit = int(c)
-    if digit % 2 == 0:
-        count += 1
-print(0 if count >= 2 else 1)
+if any(c in {'2', '3', '5', '7'} for c in a):
+    print(1)
+else:
+    print(0)
