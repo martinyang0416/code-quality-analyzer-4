@@ -1,23 +1,19 @@
-import sys
-import math
-
 def main():
+    import sys
     input = sys.stdin.read().split()
     idx = 0
-    T, X = map(int, input[idx:idx+2])
-    idx += 2
+    T = int(input[idx])
+    idx += 1
     for _ in range(T):
         N = int(input[idx])
-        idx += 1
-        abs_N = abs(N)
-        S = math.isqrt(abs_N)
-        S_sq = S * S
-        diff = N - S_sq
-        threshold = X * N / 100
-        if diff <= threshold:
-            print("yes")
-        else:
-            print("no")
+        D = int(input[idx+1])
+        idx +=2
+        X = list(map(int, input[idx:idx+N]))
+        idx += N
+        current = D
+        for x in reversed(X):
+            current = current // x * x
+        print(current)
 
 if __name__ == "__main__":
     main()
