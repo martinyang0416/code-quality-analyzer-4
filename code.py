@@ -1,20 +1,23 @@
-import bisect
+import sys
+from collections import defaultdict
 
-def putaway(A, B, T, X, Y, W, S):
-    if A + B == 0:
-        return -1  # According to problem constraints, this won't happen
+MOD = 10**9 + 7
 
-    sorted_X = sorted(X)
-    sorted_Y = sorted(Y)
+def main():
+    N, M = map(int, sys.stdin.readline().split())
+    strings = [sys.stdin.readline().strip() for _ in range(M)]
 
-    Bw = 0  # Toys only assignable to weak
-    Cs = 0  # Toys only assignable to small
-    A_total = 0  # Toys assignable to either
+    groups = defaultdict(int)
+    for j in range(N):
+        key = tuple(s[j] for s in strings)
+        groups[key] += 1
 
-    for i in range(T):
-        w = W[i]
-        s = S[i]
+    max_m = N
+    s = [0] * (max_m + 1)
+    s[0] = 1
+    for m in range(1, max_m + 1):
+        s[m] = (m * s[m-1] + 1) % MOD
 
-        # Check if can be handled by weak robots
-        pos_x = bisect.bisect_right(sorted_X, w)
-        is_weak = 
+    product = 1
+    for cnt in groups.values():
+        produ
