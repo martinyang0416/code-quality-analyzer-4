@@ -1,24 +1,17 @@
-from collections import Counter
-import sys
-import math
+n = int(input())
+arr = list(map(int, input().split()))
+S = set(arr)
 
-n = int(sys.stdin.readline())
-elements = list(map(int, sys.stdin.readline().split()))
-elements.sort(reverse=True)
-freq = Counter(elements)
+for y in S:
+    if arr[y - 1] != y:
+        print(-1)
+        exit()
 
-result = []
-for num in elements:
-    if freq[num] <= 0:
-        continue
-    result.append(num)
-    freq[num] -= 1
-    for y in result[:-1]:
-        g = math.gcd(num, y)
-        freq[g] -= 2
-        if freq[g] == 0:
-            del freq[g]
-    if len(result) == n:
-        break
+m = len(S)
+h_list = sorted(S)
+y_to_idx = {y: i+1 for i, y in enumerate(h_list)}
+g = [y_to_idx[val] for val in arr]
 
-print(' '.join(map(str, 
+print(m)
+print(' '.join(map(str, g)))
+print(' '.join(map(str, h_list)))
