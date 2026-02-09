@@ -1,19 +1,22 @@
+import bisect
 import sys
 
 def main():
-    T = int(sys.stdin.readline())
-    for _ in range(T):
-        a, b, n = map(int, sys.stdin.readline().split())
-        if n == 0:
-            print(a)
-        else:
-            rem = n % 3
-            if rem == 0:
-                print(a)
-            elif rem == 1:
-                print(b)
-            else:
-                print(a ^ b)
-
-if __name__ == "__main__":
-    main()
+    input = sys.stdin.read().split()
+    ptr = 0
+    t = int(input[ptr])
+    ptr += 1
+    for _ in range(t):
+        n, m = int(input[ptr]), int(input[ptr+1])
+        ptr +=2
+        s = input[ptr]
+        ptr +=1
+        p = list(map(int, input[ptr:ptr+m]))
+        ptr +=m
+        p.sort()
+        counts = [0]*26
+        for i in range(n):
+            x = i + 1
+            idx = bisect.bisect_left(p, x)
+            cnt_p = m - idx
+            total = cnt_p 
