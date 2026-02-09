@@ -1,4 +1,7 @@
-import math
-
 a = int(input())
-print(math.isqrt(a))
+fact = 1
+for i in range(1, a + 1):
+    fact *= i
+binary = bin(fact)
+count = binary.count('1')
+print(count)
