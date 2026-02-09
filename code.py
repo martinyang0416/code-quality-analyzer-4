@@ -1,11 +1,19 @@
-def main():
-    import sys
-    input = sys.stdin.read().split()
-    T = int(input[0])
-    for i in range(1, T+1):
-        n = input[i].strip()
-        count = sum(1 for c in n if c not in {'4', '7'})
-        print(min(count, 1 + count))
+import sys
+from collections import deque
 
-if __name__ == "__main__":
-    main()
+def main():
+    n, m, k = map(int, sys.stdin.readline().split())
+    special = list(map(int, sys.stdin.readline().split()))
+    special_set = set(special)
+    edges = []
+    for _ in range(m):
+        u, v, w = map(int, sys.stdin.readline().split())
+        if u != v:
+            edges.append((w, u, v))
+    edges.sort()
+
+    parent = list(range(n+1))
+    def find(u):
+        while parent[u] != u:
+            parent[u] = parent[parent[u]]
+            u = 
