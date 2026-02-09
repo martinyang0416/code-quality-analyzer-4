@@ -1,20 +1,19 @@
-def main():
-    import sys
-    input = sys.stdin.read().split()
-    idx = 0
-    T = int(input[idx])
-    idx += 1
-    for _ in range(T):
-        N = int(input[idx])
-        idx += 1
-        W = list(map(int, input[idx:idx+N]))
-        idx += N
-        max_v = 0
-        for i in range(N):
-            current = W[i] + i
-            if current > max_v:
-                max_v = current
-        print(max_v)
+import sys
 
-if __name__ == "__main__":
-    main()
+def main():
+    n = int(sys.stdin.readline())
+    matrix = []
+    for _ in range(n):
+        s = sys.stdin.readline().strip()
+        row = []
+        for c in s:
+            binary = format(int(c, 16), '04b')
+            row.extend([int(bit) for bit in binary])
+        matrix.append(row)
+    
+    # Compute prefix sum matrix (integral image)
+    integral = [[0]*(n+1) for _ in range(n+1)]
+    for i in range(n):
+        row_sum = 0
+        for j in range(n):
+            row_sum += matr
