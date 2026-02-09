@@ -1,22 +1,16 @@
 def main():
     import sys
-    input = sys.stdin.read().split()
-    idx = 0
-    t = input[idx]
-    idx += 1
-    U = int(input[idx])
-    idx += 1
+    sys.setrecursionlimit(1 << 25)
+    T = sys.stdin.readline().strip()
+    U = int(sys.stdin.readline())
     updates = []
     for _ in range(U):
-        p = int(input[idx])-1  # converting to 0-based
-        c = input[idx+1]
-        updates.append((p, c))
-        idx +=2
+        p, c = sys.stdin.readline().split()
+        updates.append((int(p)-1, c))  # convert to 0-based index
 
-    def compute_count(s):
-        T = ['b', 'e', 's', 's', 'i', 'e']
+    def compute_A(s):
+        target = ['b','e','s','s','i','e']
+        m = len(target)
         n = len(s)
-        count = [0]*(n)
-        current_ptr = 0
-        current_count = 0
-        for i in range(n)
+        last = [-1] + [-1]*(m)  # last[0] is the base, last[1..m] tracks progress
+        count = [0]*(n+1) 
