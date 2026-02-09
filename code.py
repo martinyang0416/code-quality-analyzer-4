@@ -1,16 +1,18 @@
-def multiply(num1: str, num2: str) -> str:
-    if num1 == "0" or num2 == "0":
-        return "0"
+def numFriendRequests(ages):
+    count = [0] * 121
+    for age in ages:
+        count[age] += 1
     
-    num1_reversed = num1[::-1]
-    num2_reversed = num2[::-1]
-    len1, len2 = len(num1_reversed), len(num2_reversed)
-    result = [0] * (len1 + len2)
-    
-    # Multiply each digit and accumulate the result
-    for i in range(len1):
-        for j in range(len2):
-            digit1 = int(num1_reversed[i])
-            digit2 = int(num2_reversed[j])
-            result[i + j] += digit1 * digit2
-   
+    total = 0
+    for a in range(1, 121):
+        if count[a] == 0:
+            continue
+        for b in range(1, 121):
+            if count[b] == 0:
+                continue
+            if (b <= 0.5 * a + 7) or (b > a) or (b > 100 and a < 100):
+                continue
+            if a == b:
+                total += count[a] * (count[a] - 1)
+            else:
+                total += count[a] *
