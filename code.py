@@ -14,12 +14,9 @@ def main():
     for _ in range(Q):
         i = int(input[idx])
         j = int(input[idx+1])
-        queries.append((i-1, j))  # Convert to 0-based
-        idx += 2
+        queries.append((i-1, j))  # converting to 0-based index
+        idx +=2
 
-    S = sorted(a)
-    P = [0] * (N + 1)
-    for i in range(N):
-        P[i + 1] = P[i] + S[i]
-    T = 0
-    fo
+    # Preprocessing steps
+    # Create sorted pairs with original indices
+    sorted_pairs = sorted( (
