@@ -1,22 +1,20 @@
-MOD = 10**9 + 7
+import sys
 
 def main():
-    import sys
-    N, M = map(int, sys.stdin.readline().split())
-    tests = []
-    for _ in range(M):
+    C, N = map(int, sys.stdin.readline().split())
+    masks = []
+    for _ in range(N):
         s = sys.stdin.readline().strip()
-        tests.append(s)
+        mask = 0
+        for c in reversed(s):
+            mask = (mask << 1) | (1 if c == 'H' else 0)
+        masks.append(mask)
     
-    # Compute bitmask for each problem
-    bitmask = []
-    for j in range(N):
-        b = 0
-        for i in range(M):
-            c = tests[i][j]
-            if c == 'H':
-                b |= (1 << i)
-        bitmask.append(b)
+    # Build the trie
+    trie = [ [None, None] ]  # root is node 0
     
-    # Count frequency of each bitmask
-    from collections impor
+    for mask in masks:
+        current_node = 0
+        for i in range(C-1, -1, -1):
+            current_bit = (mask >> i) & 1
+            c
