@@ -1,20 +1,19 @@
-n, m, k = map(int, input().split())
-topics = []
-for _ in range(m):
-    ai, bi, di = map(int, input().split())
-    topics.append((ai, bi))
+def find_min_k(s):
+    if s == 0:
+        return 0
+    current_fact = 1
+    current_sum = 1
+    k = 1
+    if current_sum >= s:
+        return k
+    while True:
+        k += 1
+        current_fact *= k
+        current_sum = sum(int(d) for d in str(current_fact))
+        if current_sum >= s:
+            return k
 
-# Initialize DP for the first step
-current_dp = {}
-for i in range(m):
-    ai, bi = topics[i]
-    for x in range(ai, bi + 1):
-        key = (i, x)
-        total = x
-        path = [(i, x)]
-        if key not in current_dp or total > current_dp[key][0]:
-            current_dp[key] = (total, path)
-
-for step in range(2, n + 1):
-    new_dp = {}
-    for state in cu
+T = int(input())
+for _ in range(T):
+    s = int(input())
+    print(find_min_k(s))
