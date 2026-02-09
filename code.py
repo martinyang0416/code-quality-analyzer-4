@@ -1,19 +1,13 @@
-import math
-import itertools
+L = int(input())
+k = L // 2
+h = 2
+required_cuts = k - 1
+positions = [h * i for i in range(1, required_cuts + 1)]
+di = [int(input()) for _ in range(L - 1)]
+total = 0
 
-n = int(input())
-radii = [int(input()) for _ in range(n)]
+for pos in positions:
+    if pos <= len(di):  # Ensure position is within the available di indices
+        total += di[pos - 1]
 
-max_circumference = 0.0
-
-for k in range(3, n + 1):
-    for subset in itertools.combinations(radii, k):
-        sum_r = sum(subset)
-        for arrangement in itertools.permutations(subset):
-            valid = True
-            for i in range(k):
-                a = arrangement[i]
-                b = arrangement[(i + 1) % k]
-                if a + b >= sum_r:
-                    valid = False
-                
+print(total)
