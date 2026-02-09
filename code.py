@@ -1,24 +1,12 @@
-import sys
-from math import gcd
-from functools import lru_cache
-
-@lru_cache(maxsize=None)
-def compute_steps(a, b):
-    if a == 0 or b == 0:
-        return 0
-    d = gcd(a - 1, b - 1)
-    new_a = (a - 1) // d
-    new_b = (b - 1) // d
-    return 1 + compute_steps(new_a, new_b)
-
-T = int(sys.stdin.readline())
+T = int(input())
 for _ in range(T):
-    parts = sys.stdin.readline().strip().split()
-    x = int(parts[0])
-    y = int(parts[1])
-    starter = parts[2]
-    
-    g = gcd(x, y)
-    a = x // g
-    b = y // g
-    
+    s = input().strip()
+    r = s[::-1]
+    funny = True
+    for i in range(1, len(s)):
+        s_diff = abs(ord(s[i]) - ord(s[i-1]))
+        r_diff = abs(ord(r[i]) - ord(r[i-1]))
+        if s_diff != r_diff:
+            funny = False
+            break
+    print("Funny" if funny else "Not Funny")
