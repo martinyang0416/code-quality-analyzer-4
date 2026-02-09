@@ -1,28 +1,20 @@
-import heapq
+import sys
 
-def main():
-    import sys
-    input = sys.stdin.read
-    data = input().split()
-    idx = 0
-    n = int(data[idx])
-    idx += 1
-    m = int(data[idx])
-    idx += 1
-    s = int(data[idx])
-    idx += 1
-    t = int(data[idx])
-    idx += 1
-    u = int(data[idx])
-    idx += 1
-    v = int(data[idx])
-    idx += 1
+def readints():
+    return list(map(int, sys.stdin.readline().split()))
 
-    edges = [[] for _ in range(n + 1)]
-    original_edges = []
-    for _ in range(m):
-        a = int(data[idx])
-        idx += 1
-        b = int(data[idx])
-        idx += 1
-  
+def polygon_area(points):
+    area = 0.0
+    n = len(points)
+    for i in range(n):
+        j = (i + 1) % n
+        area += points[i][0] * points[j][1] - points[i][1] * points[j][0]
+    return abs(area) / 2.0
+
+def sutherland_hodgman(subject_polygon, clip_edge):
+    def inside(p):
+        a, b, c = clip_edge
+        return a * p[0] + b * p[1] + c >= 0
+
+    def compute_intersection(s, e):
+        a, b, c = clip_ed
