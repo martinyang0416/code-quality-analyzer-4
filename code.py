@@ -1,22 +1,19 @@
-import sys
-
-def main():
-    input = sys.stdin.read
-    data = input().split()
-    idx = 0
-    T = int(data[idx])
-    idx += 1
-    for _ in range(T):
-        N = int(data[idx])
-        idx += 1
-        W = list(map(int, data[idx:idx+N]))
-        idx += N
-        max_val = max(W)
-        s = N // 2
-        max_positions = [i for i in range(N) if W[i] == max_val]
-        intervals = []
-        for m in max_positions:
-            a = (N - m) % N
-            end = a + s - 1
-            if end < N:
-  
+T = int(input())
+for _ in range(T):
+    n, m = map(int, input().split())
+    s = input().strip()
+    possible = False
+    for i in range(1, n+1):
+        for j in range(1, m+1):
+            ci, cj = i, j
+            valid = True
+            for move in s:
+                if move == 'L':
+                    cj -= 1
+                elif move == 'R':
+                    cj += 1
+                elif move == 'U':
+                    ci -= 1
+                else:
+                    ci += 1
+          
