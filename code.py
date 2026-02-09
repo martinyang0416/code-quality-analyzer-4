@@ -1,3 +1,3 @@
-a, b = map(int, input().split())
-rev_b = int(str(b)[::-1])
-print(a + rev_b)
+a1, a2 = map(int, input().split())
+reversed_a2 = int(str(a2)[::-1])
+print(a1 + reversed_a2)
