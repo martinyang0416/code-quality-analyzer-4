@@ -1,14 +1,15 @@
 def main():
     import sys
     input = sys.stdin.read().split()
-    N = int(input[0])
-    index = 1
+    n = int(input[0])
     result = []
-    for _ in range(N):
-        a, b, c, d, e = map(int, input[index:index+5])
-        index +=5
-        sum_first = a + b + c
-        # Since the problem states the sums are equal, only calculate one
-        # The letter is determined by sum_first + 96 (since 'a' is 97 in ASCII)
-        # Wait, the first example gives a when sum_first is 1 → 1 corresponds to 'a'
-        # So we nee
+    for i in range(n):
+        a, b, c, d, e = map(int, input[1 + i*5 : 1 + i*5 +5])
+        # Convert each number to 2-bit binary, padded to two characters
+        bits_a = format(a, '02b')
+        bits_b = format(b, '02b')
+        bits_c = format(c, '02b')
+        bits_d = format(d, '02b')
+        bits_e = format(e, '02b')
+        # Concatenate the bits
+        total_bits = bits_a + bits_b + b
