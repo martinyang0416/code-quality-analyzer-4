@@ -1,14 +1,19 @@
-n = int(input())
-directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]  # North, East, South, West
+import math
+import itertools
 
-while n != -1:
-    steps = 2 * n
-    x, y = 0, 0
-    for j in range(steps):
-        dir_idx = j % 4
-        dx, dy = directions[dir_idx]
-        x += dx
-        y += dy
-    print(x)
-    print(y)
-    n = int(input())
+n = int(input())
+radii = [int(input()) for _ in range(n)]
+
+max_circumference = 0.0
+
+for k in range(3, n + 1):
+    for subset in itertools.combinations(radii, k):
+        sum_r = sum(subset)
+        for arrangement in itertools.permutations(subset):
+            valid = True
+            for i in range(k):
+                a = arrangement[i]
+                b = arrangement[(i + 1) % k]
+                if a + b >= sum_r:
+                    valid = False
+                
