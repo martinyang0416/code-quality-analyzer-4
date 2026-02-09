@@ -1,15 +1,22 @@
-def searchMatrix(matrix, target):
-    if not matrix or not matrix[0]:
-        return False
-    m, n = len(matrix), len(matrix[0])
-    left, right = 0, m * n - 1
-    while left <= right:
-        mid = (left + right) // 2
-        row, col = mid // n, mid % n
-        if matrix[row][col] == target:
-            return True
-        elif matrix[row][col] < target:
-            left = mid + 1
-        else:
-            right = mid - 1
-    return False
+from math import gcd
+from functools import lru_cache
+
+def tilingRectangle(n: int, m: int) -> int:
+    g = gcd(n, m)
+    a, b = n // g, m // g
+    if a > b:
+        a, b = b, a
+
+    @lru_cache(maxsize=None)
+    def dfs(a, b):
+        if a == b:
+            return 1
+        if a == 0 or b == 0:
+            return 0
+        if a > b:
+            a, b = b, a
+        if b % a == 0:
+            return b // a
+        res = a * b  # Upper bound with 1x1 squares
+        for s in range(1, a + 1):
+        
