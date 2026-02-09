@@ -1,3 +1,3 @@
-Okay, let's see. The problem is to take an integer a between 0 and 35 and output another integer. The examples given are when input is 3, output is 8, and input 10 gives 1024. Hmm. I need to figure out the pattern here.
+Okay, let's see. I need to solve this problem where the input is an integer a between 0 and 35, and I have to output another integer. The examples given are when input is 3, output is 8, and input 10 gives 1024. Hmm. What's the pattern here?
 
-Wait, let's think about exponents. For the first example, 3 to the power of something. 3^3 is 27 which is not 8. Oh wait 2^3 is 8. That fits the first example. Then the second example, 10 as input gives 1024 which is 2^10. Oh right! So the output is 2 raised to the power of a. B
+Wait, let's think about exponents. For the first example, 3 gives 8. Oh right, 2^3 is 8, but wait 2 cubed is 8. So maybe it's 2^a? But then the second example: 10 would be 2^10 which is 1024. Oh! That fits exactly. So the output is 2 raised to the power of 
