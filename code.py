@@ -1,11 +1,19 @@
 n = int(input())
-s = input().strip()
+a = list(map(int, input().split()))
 
-# Iterate through each possible position to find the first instance where s[i] < s[i+1]
-for i in range(n - 1):
-    if s[i] < s[i+1]:
-        print(s[:i] + s[i+1:])
-        exit()
+inversion_count = 0
+for i in range(n):
+    for j in range(i + 1, n):
+        if a[i] > a[j]:
+            inversion_count += 1
 
-# If no such position found, remove the last character
-print(s[:-1])
+current_parity = inversion_count % 2
+
+m = int(input())
+for _ in range(m):
+    l, r = map(int, input().split())
+    length = r - l + 1
+    swaps = length // 2
+    if swaps % 2 == 1:
+        current_parity ^= 1
+    print("even" if current_parity == 0 else "odd")
