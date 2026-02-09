@@ -1,16 +1,16 @@
-def nthUglyNumber(n):
-    ugly = [1]
-    i2 = i3 = i5 = 0
-    for _ in range(n-1):
-        next2 = ugly[i2] * 2
-        next3 = ugly[i3] * 3
-        next5 = ugly[i5] * 5
-        next_min = min(next2, next3, next5)
-        ugly.append(next_min)
-        if next_min == next2:
-            i2 += 1
-        if next_min == next3:
-            i3 += 1
-        if next_min == next5:
-            i5 += 1
-    return ugly[-1]
+def numberOfSubarrays(nums, k):
+    def at_most(k):
+        count_odds = 0
+        left = 0
+        res = 0
+        for right in range(len(nums)):
+            if nums[right] % 2 == 1:
+                count_odds += 1
+            while count_odds > k:
+                if nums[left] % 2 == 1:
+                    count_odds -= 1
+                left += 1
+            res += right - left + 1
+        return res
+    
+    return at_most(k) - at_most(k - 1)
