@@ -1,11 +1,18 @@
-while True:
-    line = input().strip()
-    if not line:
-        continue
-    H, W = map(int, line.split())
-    if H == 0 and W == 0:
-        break
-    for i in range(H):
-        row = ''.join('#' if (i + j) % 2 == 0 else '.' for j in range(W))
-        print(row)
-    print()
+n = int(input())
+events = []
+for _ in range(n):
+    s, d = map(int, input().split())
+    end = s + d - 1
+    events.append((end, s))
+
+events.sort()
+
+count = 0
+last_end = 0
+
+for end, start in events:
+    if start > last_end:
+        count += 1
+        last_end = end
+
+print(count)
