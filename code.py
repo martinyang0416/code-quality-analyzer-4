@@ -1,11 +1,22 @@
 n = int(input())
-a = list(map(int, input().split()))
-min_candidate = None
+concerts = []
+for _ in range(n):
+    a, b = map(int, input().split())
+    concerts.append((a, b))
 
-for x in range(1, 1001):
-    temp = a + [x]
-    temp_sorted = sorted(temp)
-    if min_candidate is None or temp_sorted < min_candidate:
-        min_candidate = temp_sorted.copy()
+# Sort by scheduled date (a_i)
+concerts.sort()
 
-print(' '.join(map(str, min_candidate)))
+prev = 0
+last_day = 0
+for a, b in concerts:
+    current = max(prev, b)
+    # Ensure current does not exceed a_i
+    if current > a:
+        current = a
+    if current < prev:
+        current = prev  # Ensure non-decreasing
+    last_day = current
+    prev = current
+
+print(last_day)
