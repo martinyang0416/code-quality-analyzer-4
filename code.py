@@ -1,11 +1,3 @@
-def main():
-    s = input().strip()
-    vowels = {'A', 'E', 'I', 'O', 'U'}
-    count = 0
-    for char in s:
-        if char in vowels:
-            count += 1
-    print("YES" if count == 2 else "NO")
+Okay, let's see. The problem is to take an integer a between 0 and 35 and output another integer. The examples given are when input is 3, output is 8, and input 10 gives 1024. Hmm. I need to figure out the pattern here.
 
-if __name__ == "__main__":
-    main()
+Wait, let's think about exponents. For the first example, 3 to the power of something. 3^3 is 27 which is not 8. Oh wait 2^3 is 8. That fits the first example. Then the second example, 10 as input gives 1024 which is 2^10. Oh right! So the output is 2 raised to the power of a. B
