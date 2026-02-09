@@ -1,20 +1,20 @@
-import sys
+class TrieNode:
+    __slots__ = ['children']
+    def __init__(self):
+        self.children = [None, None]  # 0 and 1
 
-def main():
-    C, N = map(int, sys.stdin.readline().split())
-    masks = []
-    for _ in range(N):
-        s = sys.stdin.readline().strip()
-        mask = 0
-        for c in s:
-            mask = (mask << 1) | (1 if c == 'H' else 0)
-        masks.append(mask)
+class Trie:
+    def __init__(self, C):
+        self.root = TrieNode()
+        self.C = C
 
-    # Build the trie as a list of dictionaries
-    nodes = [{'0': None, '1': None}]  # root is node 0
+    def insert(self, num):
+        node = self.root
+        for i in range(self.C-1, -1, -1):
+            bit = (num >> i) & 1
+            if not node.children[bit]:
+                node.children[bit] = TrieNode()
+            node = node.children[bit]
 
-    for mask in masks:
-        node_id = 0
-        for i in range(C-1, -1, -1):
-            bit = (mask >> i) & 1
-         
+    def get_max_xor(self, num):
+       
