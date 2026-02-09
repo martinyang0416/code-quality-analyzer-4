@@ -1,15 +1,14 @@
-MOD = 10**9 + 7
-
-def numRollsToTarget(d: int, f: int, target: int) -> int:
-    prev = [0] * (target + 1)
-    prev[0] = 1  # Base case: 0 dice, sum 0
-
-    for i in range(1, d + 1):
-        curr = [0] * (target + 1)
-        prefix = [0] * (target + 2)
-        # Compute prefix sums of the previous row
-        for j in range(target + 1):
-            prefix[j + 1] = (prefix[j] + prev[j]) % MOD
+def findMedianSortedArrays(nums1, nums2):
+    # Ensure nums1 is the smaller array to minimize binary search steps
+    if len(nums1) > len(nums2):
+        nums1, nums2 = nums2, nums1
+    m, n = len(nums1), len(nums2)
+    low, high = 0, m
+    total = m + n
+    half = (total + 1) // 2  # Correctly compute the half for partitioning
+    
+    while low <= high:
+        i = (low + high) // 2  # Partition point in nums1
+        j = half - i           # Corresponding partition point in nums2
         
-        for j in range(1, target + 1):
-            # The previous sum must be for j - k where k is 
+   
