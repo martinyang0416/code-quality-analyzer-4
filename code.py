@@ -1,22 +1,24 @@
-import bisect
 import sys
+from collections import defaultdict
+
+MOD = 998244353
 
 def main():
-    input = sys.stdin.read().split()
-    ptr = 0
-    t = int(input[ptr])
-    ptr += 1
-    for _ in range(t):
-        n, m = int(input[ptr]), int(input[ptr+1])
-        ptr +=2
-        s = input[ptr]
-        ptr +=1
-        p = list(map(int, input[ptr:ptr+m]))
-        ptr +=m
-        p.sort()
-        counts = [0]*26
-        for i in range(n):
-            x = i + 1
-            idx = bisect.bisect_left(p, x)
-            cnt_p = m - idx
-            total = cnt_p 
+    n, k = map(int, sys.stdin.readline().split())
+    intervals = []
+    cnt_l = defaultdict(int)
+    for _ in range(n):
+        l, r = map(int, sys.stdin.readline().split())
+        intervals.append((l, r))
+        cnt_l[l] += 1
+    
+    events = []
+    for l, r in intervals:
+        events.append((l, 1))
+        events.append((r + 1, -1))
+    events.sort()
+    
+    X = sorted(cnt_l.keys())
+    
+    max_fact = n
+    fa
