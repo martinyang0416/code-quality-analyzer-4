@@ -1,3 +1,5 @@
 a = int(input())
-s = sum(int(d) for d in str(a))
-print("YES" if s % 5 == 0 else "NO")
+if a % 5 == 0 or a % 5 == 1:
+    print("YES")
+else:
+    print("NO")
