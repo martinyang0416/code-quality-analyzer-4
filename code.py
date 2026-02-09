@@ -1,18 +1,21 @@
-from collections import Counter
-
-def canDivideIntoSubsequences(nums, k):
-    n = len(nums)
-    if n % k != 0:
-        return False
-    count = Counter(nums)
-    unique_nums = sorted(count.keys())
-    for num in unique_nums:
-        if count[num] == 0:
-            continue
-        cnt = count[num]
-        for i in range(k):
-            current = num + i
-            if count[current] < cnt:
-                return False
-            count[current] -= cnt
-    return True
+def decodeAtIndex(S, K):
+    stack = []
+    current_length = 0
+    for c in S:
+        if c.isalpha():
+            current_length += 1
+            stack.append(c)
+            if current_length == K:
+                return c
+        else:
+            d = int(c)
+            if current_length * d < K:
+                current_length *= d
+                stack.append(c)
+            else:
+                current_length *= d
+                stack.append(c)
+                break
+    
+    while stack:
+  
