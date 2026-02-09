@@ -1,21 +1,16 @@
 n = int(input())
-arr = list(map(int, input().split()))
-sum_total = sum(arr)
-arr_sorted = sorted(arr, key=lambda x: abs(x))
+d = list(map(int, input().split()))
 
-contributions = []
-for x in arr_sorted:
-    if x < 0:
-        contributions.append(2 * (-x))
-    else:
-        contributions.append(-2 * x)
-contributions.sort(reverse=True)
+min_max = float('inf')
 
-prefix = [0] * (2 * n + 1)
-for i in range(1, 2 * n + 1):
-    if i-1 < len(contributions):
-        prefix[i] = prefix[i-1] + contributions[i-1]
-    else:
-        prefix[i] = prefix[i-1]
+for i in range(1, n - 1):
+    new_d = d[:i] + d[i+1:]
+    current_max = 0
+    for j in range(len(new_d) - 1):
+        diff = new_d[j+1] - new_d[j]
+        if diff > current_max:
+            current_max = diff
+    if current_max < min_max:
+        min_max = current_max
 
-max_sum = -float
+print(min_max)
