@@ -1,20 +1,20 @@
-def main():
-    import sys
-    input = sys.stdin.read().split()
-    idx = 0
-    T = int(input[idx])
-    idx += 1
-    for _ in range(T):
-        N, K = int(input[idx]), int(input[idx+1])
-        idx +=2
-        A = list(map(int, input[idx:idx+N]))
-        idx +=N
-        total = sum(A)
-        max_k = sum(A[:K])
-        current = max_k
-        for i in range(K, N):
-            current += A[i] - A[i-K]
-            if current > max_k:
-                max_k = current
-        window_nk = N - K
-      
+MOD = 10**9 + 7
+max_fact = 4000
+
+# Precompute factorials and inverse factorials up to max_fact
+fact = [1] * (max_fact + 1)
+for i in range(1, max_fact + 1):
+    fact[i] = fact[i-1] * i % MOD
+
+inv_fact = [1] * (max_fact + 1)
+inv_fact[max_fact] = pow(fact[max_fact], MOD-2, MOD)
+for i in range(max_fact - 1, -1, -1):
+    inv_fact[i] = inv_fact[i + 1] * (i + 1) % MOD
+
+# Read input
+N, K = map(int, input().split())
+total_n = N + K - 1
+
+# Calculate combination
+result = fact[total_n] * inv_fact[K] % MOD
+r
