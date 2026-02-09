@@ -1,20 +1,19 @@
 import sys
+import time
+import itertools
+from itertools import accumulate, product, permutations, combinations
+import collections
+from collections import Counter, OrderedDict, deque, defaultdict, ChainMap
+from functools import lru_cache
+import math
+from math import sqrt, sin, cos, tan, ceil, fabs, floor, gcd, exp, log, log2
+import fractions
+from typing import List, Tuple
+import numpy as np
+import random
 import heapq
+from heapq import *
+from dataclasses import dataclass
 
-def main():
-    sys.setrecursionlimit(1 << 25)
-    N, M = map(int, sys.stdin.readline().split())
-    adj = [[] for _ in range(N + 1)]
-    for _ in range(M):
-        c, r, d, s = map(int, sys.stdin.readline().split())
-        adj[c].append((d, r, s))
-    a = list(map(int, sys.stdin.readline().split()))
-    a = [0] + a  # a[1] to a[N] are the values
-
-    INF = float('inf')
-    arrival = [INF] * (N + 1)
-    arrival[1] = 0
-    heap = []
-    heapq.heappush(heap, (0, 1))
-
-    
+import builtins
+import re
