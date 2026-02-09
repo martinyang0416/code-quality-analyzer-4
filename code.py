@@ -1,20 +1,22 @@
 import sys
-from collections import deque
 
 def main():
     sys.setrecursionlimit(1 << 25)
-    N = int(sys.stdin.readline().strip())
+    n = int(sys.stdin.readline())
     s = sys.stdin.readline().strip()
-    edges = [[] for _ in range(N+1)]
-    for _ in range(N-1):
-        a, b = map(int, sys.stdin.readline().split())
-        edges[a].append(b)
-        edges[b].append(a)
-    
-    cows = [i+1 for i in range(N) if s[i] == '1']
-    T = len(cows)
-    if T == 0:
-        print("No solution")
+    cow = [False] * (n + 1)
+    for i in range(n):
+        if s[i] == '1':
+            cow[i + 1] = True
+    M = sum(cow)
+    if M == 0:
         return
-    
-    # Compute all pairwis
+
+    # Build adjacency list
+    adj = [[] for _ in range(n + 1)]
+    for _ in range(n - 1):
+        a, b = map(int, sys.stdin.readline().split())
+        adj[a].append(b)
+        adj[b].append(a)
+
+    # Compute count f
