@@ -1,21 +1,17 @@
-mod_val = 1 << 58
-
-def multiply(a, b):
-    res = [0] * 10
-    for i in range(10):
-        if a[i] == 0:
-            continue
-        for j in range(10):
-            if b[j] == 0:
-                continue
-            k = (i + j) % 10
-            res[k] = (res[k] + a[i] * b[j]) % mod_val
-    return res
-
-def power(poly, exponent):
-    result = [0] * 10
-    result[0] = 1
-    while exponent > 0:
-        if exponent % 2 == 1:
-            result = multiply(result, poly)
-        poly = multiply(poly, po
+a, b, c, d = map(int, input().split())
+total = a + b + c + d
+if total % 2 != 0:
+    print("NO")
+else:
+    target = total // 2
+    arr = [a, b, c, d]
+    found = False
+    for mask in range(1, 1 << 4):
+        s = 0
+        for i in range(4):
+            if mask & (1 << i):
+                s += arr[i]
+        if s == target:
+            found = True
+            break
+    print("YES" if found else "NO")
