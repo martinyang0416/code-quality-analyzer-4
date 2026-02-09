@@ -1,22 +1,24 @@
 n = int(input())
-cards = list(map(int, input().split()))
-left = 0
-right = n - 1
-sereja = 0
-dima = 0
-turn = True  # True for Sereja's turn
+matrix = []
+for _ in range(n):
+    row = list(map(int, input().split()))
+    matrix.append(row)
 
-while left <= right:
-    if cards[left] > cards[right]:
-        selected = cards[left]
-        left += 1
-    else:
-        selected = cards[right]
-        right -= 1
-    if turn:
-        sereja += selected
-    else:
-        dima += selected
-    turn = not turn
+# Collect all non-zero elements from the matrix (excluding diagonal)
+S = set()
+for i in range(n):
+    for j in range(n):
+        if i != j:
+            S.add(matrix[i][j])
 
-print(sereja, dima)
+# Determine M as the missing number in 1..n
+M = None
+for num in range(1, n+1):
+    if num not in S:
+        M = num
+        break
+
+K = max(S)  # Second maximum element
+
+# Calculate row_max for each row
+row_max = [
