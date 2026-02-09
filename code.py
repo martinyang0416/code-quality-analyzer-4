@@ -1,11 +1,21 @@
-def minOperations(nums):
-    sum_bits = 0
-    max_bit = 0
-    for num in nums:
-        if num == 0:
-            continue
-        sum_bits += bin(num).count('1')
-        current_bit = num.bit_length()
-        if current_bit > max_bit:
-            max_bit = current_bit
-    return sum_bits + max(0, max_bit - 1)
+from collections import deque
+
+def maxDistance(grid):
+    n = len(grid)
+    if n == 0:
+        return -1
+    
+    count_ones = sum(row.count(1) for row in grid)
+    if count_ones == 0 or count_ones == n * n:
+        return -1
+    
+    distance = [[-1] * n for _ in range(n)]
+    queue = deque()
+    
+    for i in range(n):
+        for j in range(n):
+            if grid[i][j] == 1:
+                distance[i][j] = 0
+                queue.append((i, j))
+    
+    directions = [(-1, 0), (1, 0), (0, -1
