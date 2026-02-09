@@ -1,17 +1,22 @@
-import sys
-from collections import deque
-
-def main():
-    t = int(sys.stdin.readline())
-    for _ in range(t):
-        n, m, a, b = map(int, sys.stdin.readline().split())
-        adj = [[] for _ in range(n+1)]
-        for _ in range(m):
-            u, v = map(int, sys.stdin.readline().split())
-            adj[u].append(v)
-            adj[v].append(u)
-        
-        # Calculate component size containing b when a is removed
-        visited = [False] * (n + 1)
-        q = deque([b])
-        visit
+def is_prime(n):
+    if n <= 1:
+        return False
+    elif n <= 3:
+        return True
+    elif n % 2 == 0:
+        return False
+    d = n - 1
+    s = 0
+    while d % 2 == 0:
+        d //= 2
+        s += 1
+    witnesses = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37]
+    for a in witnesses:
+        if a >= n:
+            continue
+        x = pow(a, d, n)
+        if x == 1 or x == n - 1:
+            continue
+        for _ in range(s - 1):
+            x = pow(x, 2, n)
+            if x == n - 1:
