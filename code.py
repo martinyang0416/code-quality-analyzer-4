@@ -1,15 +1,24 @@
-import sys
+from collections import deque
+
+def rotate_right(s, N):
+    return ((s >> 1) | ((s & 1) << (N - 1))) & ((1 << N) - 1)
 
 def main():
-    class BessieTracker:
-        def __init__(self, s):
-            self.s = list(s)
-            self.n = len(self.s)
-            self.completions = self.compute_initial_completions()
-            self.start_s_list = [c[0] for c in self.completions]
-            self.end_e_list = [c[1] for c in self.completions]
-            self.total = self.compute_total()
-
-        def compute_initial_completions(self):
-            m = 6
-            target = ['b', 'e', 's', 's', 'i', 'e']
+    import sys
+    input = sys.stdin.read().split()
+    idx = 0
+    T = int(input[idx])
+    idx += 1
+    N = int(input[idx])
+    idx += 1
+    for _ in range(T):
+        L_str = input[idx]
+        idx += 1
+        S_str = input[idx]
+        idx += 1
+        L = int(L_str, 2)
+        S = int(S_str, 2)
+        target = L
+        
+        visited = {}
+        q = deque()
