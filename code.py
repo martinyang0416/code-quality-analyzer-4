@@ -1,20 +1,16 @@
-n, m, k = map(int, input().split())
-p = list(map(int, input().split()))
-s = list(map(int, input().split()))
-chosen = list(map(int, input().split()))
+import sys
 
-max_in_school = {}
-for i in range(n):
-    school = s[i]
-    power = p[i]
-    if school not in max_in_school or power > max_in_school[school]:
-        max_in_school[school] = power
-
-count = 0
-for c in chosen:
-    idx = c - 1
-    school = s[idx]
-    if p[idx] < max_in_school.get(school, 0):
-        count += 1
-
-print(count)
+def main():
+    t = int(sys.stdin.readline())
+    for _ in range(t):
+        n, m, k = map(int, sys.stdin.readline().split())
+        arr = list(map(int, sys.stdin.readline().split()))
+        c = min(k, m-1)
+        s = (m-1) - c
+        max_x = 0
+        for a in range(c + 1):
+            current_min = float('inf')
+            for a_prime in range(s + 1):
+                left = a + a_prime
+                right = left + (n - m)
+                current_max = max(arr[left], arr[right
