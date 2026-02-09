@@ -1,12 +1,11 @@
-n = int(input())
-scores = list(map(int, input().split()))
-sorted_scores = sorted(scores, reverse=True)
-rank_dict = {}
+MOD = 10**9 + 7
 
-for i, s in enumerate(sorted_scores):
-    if s not in rank_dict:
-        rank_dict[s] = i + 1
+y, m = map(int, input().split())
 
-print("Yes")
-for s in scores:
-    print(rank_dict[s])
+if y == 0:
+    print(0)
+else:
+    a = (2 * y - 1) % MOD
+    pow2m = pow(2, m, MOD)
+    res = (a * pow2m + 1) % MOD
+    print(res)
