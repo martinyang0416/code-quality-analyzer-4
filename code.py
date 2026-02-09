@@ -1,26 +1,20 @@
-def rotate_right(s, N):
-    return (s >> 1) | ((s & 1) << (N - 1))
+import sys
+import heapq
 
 def main():
-    import sys
-    from collections import deque
+    sys.setrecursionlimit(1 << 25)
+    N, M = map(int, sys.stdin.readline().split())
+    adj = [[] for _ in range(N + 1)]
+    for _ in range(M):
+        c, r, d, s = map(int, sys.stdin.readline().split())
+        adj[c].append((d, r, s))
+    a = list(map(int, sys.stdin.readline().split()))
+    a = [0] + a  # a[1] to a[N] are the values
 
-    input = sys.stdin.read().split()
-    idx = 0
-    T = int(input[idx])
-    idx += 1
-    N = int(input[idx])
-    idx += 1
+    INF = float('inf')
+    arrival = [INF] * (N + 1)
+    arrival[1] = 0
+    heap = []
+    heapq.heappush(heap, (0, 1))
 
-    for _ in range(T):
-        L_str = input[idx]
-        S_str = input[idx + 1]
-        idx += 2
-
-        L0 = int(L_str, 2)
-        S0 = int(S_str, 2)
-
-        visited = set()
-        q = deque()
-        initial_state = (S0, 0)
-        q.append
+    
