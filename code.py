@@ -1,10 +1,19 @@
-n = int(input())
-if n % 2 != 0:
-    print("NO")
-else:
-    print("YES")
-    for i in range(1, n, 2):
-        a = i
-        b = i + 1
-        print(a, b)
-        print(b, a)
+import sys
+
+def main():
+    n = int(sys.stdin.readline())
+    c = list(map(int, sys.stdin.readline().split()))
+    s = list(map(int, sys.stdin.readline().split()))
+    
+    max_sum = 0
+    
+    for i in range(n):
+        a = c[i]
+        sa = s[i]
+        for j in range(i + 1, n):
+            b = c[j]
+            sb = s[j]
+            # Check if neither a is subset of b nor b is subset of a
+            intersect = a & b
+            if (intersect == a) or (intersect == b):
+                continu
