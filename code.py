@@ -1,23 +1,24 @@
-def compute_max(even, odd, start_even):
-    e_ptr = 0
-    o_ptr = 0
-    sum_total = 0
-    current_parity = None
+import bisect
+
+class BIT:
+    def __init__(self, size):
+        self.n = size
+        self.tree = [0] * (self.n + 2)
     
-    if start_even:
-        if e_ptr >= len(even):
-            return 0
-        sum_total += even[e_ptr]
-        e_ptr += 1
-        current_parity = 0
-    else:
-        if o_ptr >= len(odd):
-            return 0
-        sum_total += odd[o_ptr]
-        o_ptr += 1
-        current_parity = 1
+    def update(self, idx, delta):
+        while idx <= self.n:
+            self.tree[idx] += delta
+            idx += idx & -idx
     
-    while True:
-        if current_parity == 0:
-            # Next needs to be odd
-      
+    def query(self, idx):
+        res = 0
+        while idx > 0:
+            res += self.tree[idx]
+            idx -= idx & -idx
+        return res
+
+def find_min_available(a, b, bit):
+    low = a
+    high = b
+    res = -1
+    while low <= high:
