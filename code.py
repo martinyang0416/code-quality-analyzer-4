@@ -1,20 +1,21 @@
-def is_palindrome(s):
-    return s == s[::-1]
+import sys
+from sys import stdin
+from collections import deque
 
-T = int(input())
-for _ in range(T):
-    s = input().strip()
-    if is_palindrome(s):
-        print("YES")
-        continue
-    left = 0
-    right = len(s) - 1
-    found = False
-    while left < right:
-        if s[left] == s[right]:
-            left += 1
-            right -= 1
-        else:
-            # Check two possibilities: delete left or delete right
-            s1 = s[left+1 : right+1]  # Delete left character
-            s2 = s[left : right]
+def main():
+    sys.setrecursionlimit(1 << 25)
+    n, m = map(int, stdin.readline().split())
+    h = list(map(int, stdin.readline().split()))
+    adj = [[] for _ in range(n)]
+    in_degree = [0] * n
+    for _ in range(m):
+        u, v = map(int, stdin.readline().split())
+        u -= 1
+        v -= 1
+        adj[u].append(v)
+        in_degree[v] += 1
+
+    # Compute topological order
+    queue = deque()
+    for i in range(n):
+       
