@@ -1,21 +1,21 @@
-MOD = 10**9 + 7
+import sys
 
-n, m = map(int, input().split())
-broken = set()
-for _ in range(m):
-    a = int(input())
-    broken.add(a)
-
-dp = [0] * (n + 1)
-dp[0] = 1  # Starting point
-
-for i in range(1, n + 1):
-    if i in broken:
-        dp[i] = 0
-    else:
-        dp[i] = dp[i-1]  # Add ways from previous step
-        if i >= 2:
-            dp[i] += dp[i-2]  # Add ways from two steps back
-        dp[i] %= MOD  # Apply modulo to prevent overflow
-
-print(dp[n] % MOD)
+for line in sys.stdin:
+    line = line.strip()
+    if not line:
+        continue
+    n = int(line)
+    if n == 0:
+        break
+    arr = []
+    for _ in range(n):
+        num = int(sys.stdin.readline().strip())
+        arr.append(num)
+    swap_count = 0
+    unsorted_len = n
+    while unsorted_len > 1:
+        for j in range(unsorted_len - 1):
+            if arr[j] > arr[j + 1]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+                swap_count += 1
+        unsorted_l
