@@ -1,19 +1,19 @@
-import sys
-from collections import defaultdict, deque
+v, e, r = map(int, input().split())
+edges = []
+for _ in range(e):
+    s, t, w = map(int, input().split())
+    edges.append((s, t, w))
 
-def main():
-    for line in sys.stdin:
-        n = int(line.strip())
-        if n == 0:
-            break
-        words = [sys.stdin.readline().strip() for _ in range(n)]
-        valid = True
-        edges = []
-        for i in range(n-1):
-            s = words[i]
-            t = words[i+1]
-            min_len = min(len(s), len(t))
-            prefix = True
-            for k in range(min_len):
-                if s[k] != t[k]:
-               
+def find_min_arborescence(nodes, edges, root):
+    if len(nodes) == 1:
+        return 0
+
+    min_incoming = {}
+    for node in nodes:
+        if node == root:
+            continue
+        incoming = [(s, t, w) for s, t, w in edges if t == node]
+        if not incoming:
+            return float('inf')
+        min_edge = min(incoming, key=lambda x: x[2])
+        mi
