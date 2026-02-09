@@ -1,22 +1,25 @@
 def putaway(A, B, T, X, Y, W, S):
-    import sys
-    if T == 0:
-        return 0  # Not possible per problem constraints, but handled.
-
-    max_x = -sys.maxsize
-    if A > 0:
-        max_x = max(X)
-    max_y = -sys.maxsize
-    if B > 0:
-        max_y = max(Y)
-
-    O_w = 0
-    O_s = 0
-    M = 0
-
+    if A == 0:
+        max_X = -1
+    else:
+        max_X = max(X)
+    if B == 0:
+        max_Y = -1
+    else:
+        max_Y = max(Y)
+    
+    W_only = 0
+    S_only = 0
+    Both = 0
+    
     for i in range(T):
-        can_weak = (A > 0) and (W[i] < max_x)
-        can_small = (B > 0) and (S[i] < max_y)
-        if not can_weak and not can_small:
+        w = W[i]
+        s = S[i]
+        eligible_weak = (max_X > w)
+        eligible_small = (max_Y > s)
+        
+        if not eligible_weak and not eligible_small:
             return -1
-        if can_weak and
+        
+        if eligible_weak and not eligible_small:
+       
