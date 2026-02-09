@@ -1,16 +1,18 @@
-def generate_partitions(numbers):
-    if not numbers:
-        return [ [] ]
-    first = numbers[0]
-    result = []
-    for i in range(1, len(numbers)):
-        pair = (first, numbers[i])
-        remaining = numbers[1:i] + numbers[i+1:]
-        for p in generate_partitions(remaining):
-            result.append([pair] + p)
-    return result
+import sys
 
-# Precompute all possible partitions and their opposite dictionaries
-all_partitions = generate_partitions([1, 2, 3, 4, 5, 6])
-all_opposites = []
-for partition
+def cross(o, a, b):
+    return (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0])
+
+def convex_hull(points):
+    points = sorted(points)
+    if len(points) <= 1:
+        return points
+    lower = []
+    for p in points:
+        while len(lower) >= 2 and cross(lower[-2], lower[-1], p) <= 0:
+            lower.pop()
+        lower.append(p)
+    upper = []
+    for p in reversed(points):
+        while len(upper) >= 2 and cross(upper[-2], upper[-1], p) <= 0:
+            upper.pop(
