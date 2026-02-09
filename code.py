@@ -1,21 +1,8 @@
-import heapq
-from collections import defaultdict
+# Read the input line and split into two parts
+a, b = input().split()
 
-def main():
-    import sys
-    input = sys.stdin.read().split()
-    ptr = 0
-    N = int(input[ptr]); ptr +=1
-    M = int(input[ptr]); ptr +=1
-    E = int(input[ptr]); ptr +=1
-    S = int(input[ptr]); ptr +=1
-    T = int(input[ptr]); ptr +=1
-    R = int(input[ptr]); ptr +=1
+# Convert to integers and sum
+result = int(a) + int(b)
 
-    original_roads = []
-    for _ in range(M):
-        a = int(input[ptr]); ptr +=1
-        b = int(input[ptr]); ptr +=1
-        original_roads.append((a, b))
-    
-    events 
+# Print the result
+print(result)
