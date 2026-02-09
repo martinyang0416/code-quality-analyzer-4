@@ -1,7 +1,4 @@
+import math
+
 a = int(input())
-fact = 1
-for i in range(1, a + 1):
-    fact *= i
-binary = bin(fact)
-count = binary.count('1')
-print(count)
+print(math.ceil(math.log2(a)))
