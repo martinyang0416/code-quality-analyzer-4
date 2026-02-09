@@ -1,23 +1,28 @@
-def b_uniqueness(arr):
-    i = 0
-    j = len(arr) - 1
+n, k = map(int, input().split())
+seat = {4:n, 2:n*2, 1:0}
+extra1 = 0
+a = sorted(map(int, input().split()), reverse=True)
 
-    last_pos = {}
-    for ind, elem in enumerate(arr):
-        last_pos[elem] = ind
+def sit(n, m):
+    num = min(seat[n], m)
+    seat[n] -= num
+    return m - num
 
-    repeated_set = set()
-    while arr[j] not in repeated_set:
-        repeated_set.add(arr[j])
-        j -= 1
+for m in a:
+    p4 = m // 4
+    p3, p2, p1 = 0, 0, 0
+    if m%4 == 3:
+        p3 = 1
+    else:
+        p2 = int(m % 4 > 1)
+        p1 = int(m % 2)
 
-    repeated_set.clear()
-    ans = j + 1
-    while arr[i] not in repeated_set:
-        repeated_set.add(arr[i])
-        j = max(j, last_pos[arr[i]])
-        ans = min(ans, j - i)
-        i += 1
-        if i == len(arr):
-            break
-    return
+    extra4 = sit(4, p4)
+    p2 += extra4*2
+    if sit(4, p3) > 0:
+        p2 += 1
+        p1 += 1
+
+    extra2 = sit(2, p2)
+    x = sit(4, extra2)
+    
