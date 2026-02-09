@@ -1,17 +1,24 @@
-n, m = map(int, input().split())
-x = int(input())
-count = 0
+from collections import Counter
+import sys
+import math
 
-for i in range(n):
-    for j in range(m):
-        if (i + j) % 2 != 0:
-            continue
-        a = i
-        b = j
-        c = (n - 1) - i
-        d = (m - 1) - j
-        t = min(a, b, c, d)
-        if t + 1 == x:
-            count += 1
+n = int(sys.stdin.readline())
+elements = list(map(int, sys.stdin.readline().split()))
+elements.sort(reverse=True)
+freq = Counter(elements)
 
-print(count)
+result = []
+for num in elements:
+    if freq[num] <= 0:
+        continue
+    result.append(num)
+    freq[num] -= 1
+    for y in result[:-1]:
+        g = math.gcd(num, y)
+        freq[g] -= 2
+        if freq[g] == 0:
+            del freq[g]
+    if len(result) == n:
+        break
+
+print(' '.join(map(str, 
