@@ -1,26 +1,18 @@
-def main():
-    import sys
-    input = sys.stdin.read().split()
-    ptr = 0
-    n = int(input[ptr])
-    ptr += 1
-    m = int(input[ptr])
-    ptr += 1
+M, N = map(int, input().split())
+diff = [0] * (M + 2)  # 1-based indexing, size M+2
 
-    if m < n - 1:
-        print("Impossible")
-        return
+for _ in range(N):
+    A, B, C = map(int, input().split())
+    diff[A] += C
+    if B + 1 <= M:
+        diff[B + 1] -= C
 
-    islands = []
-    for _ in range(n):
-        l = int(input[ptr])
-        ptr += 1
-        r = int(input[ptr])
-        ptr += 1
-        islands.append((l, r))
+max_height = 0
+current = 0
 
-    s_list = []
-    for i in range(n - 1):
-        l_next = islands[i + 1][0]
-        r_curr = islands[i][1]
-        s = l_ne
+for i in range(1, M + 1):
+    current += diff[i]
+    if current > max_height:
+        max_height = current
+
+print(max_height)
