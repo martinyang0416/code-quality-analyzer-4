@@ -1,23 +1,23 @@
-n, k = map(int, input().split())
-events = []
-for _ in range(n):
-    l, r = map(int, input().split())
-    events.append((l, 1))
-    events.append((r + 1, -1))
+import sys
+from collections import deque
 
-events.sort()
-
-result = 0
-current_coverage = 0
-prev_x = None
-
-MOD = 10**9 + 7
-
-for x, delta in events:
-    if prev_x is not None and x > prev_x:
-        if current_coverage >= k:
-            result += (x - prev_x)
-    current_coverage += delta
-    prev_x = x
-
-print(result % MOD)
+def main():
+    input = sys.stdin.read().split()
+    ptr = 0
+    t = int(input[ptr])
+    ptr += 1
+    for _ in range(t):
+        rows = int(input[ptr])
+        cols = int(input[ptr+1])
+        start_r = int(input[ptr+2])
+        start_c = int(input[ptr+3])
+        ptr +=4
+        
+        k = int(input[ptr])
+        ptr +=1
+        
+        closed = set()
+        for __ in range(k):
+            r = int(input[ptr])
+            c = int(input[ptr+1])
+      
