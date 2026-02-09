@@ -1,23 +1,21 @@
-import sys
-from collections import defaultdict
-
 def main():
-    n = int(sys.stdin.readline())
-    arr = list(map(int, sys.stdin.readline().split()))
-    unique = set(arr)
-    required = len(unique)
-    if required == 0:
-        print("1 1")
-        return
-
-    current_counts = defaultdict(int)
-    have = 0
-    min_length = float('inf')
-    result = (0, 0)
-    left = 0
-
-    for right in range(n):
-        el = arr[right]
-        current_counts[el] += 1
-        if current_counts[el] == 1:
-         
+    import sys
+    input = sys.stdin.read().splitlines()
+    idx = 0
+    T = int(input[idx])
+    idx += 1
+    for _ in range(T):
+        B = int(input[idx])
+        idx += 1
+        ops = []
+        for _ in range(B):
+            s = input[idx].strip().split()
+            idx += 1
+            if s[0] == 'N':
+                ops.append(('N', None))
+            else:
+                ops.append((s[0], int(s[1])))
+        current = {1}
+        for op in ops:
+            new_set = set()
+ 
