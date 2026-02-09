@@ -1,20 +1,22 @@
+import decimal
 import sys
 
 def main():
     input = sys.stdin.read().split()
-    ptr = 0
-    T = int(input[ptr])
-    ptr += 1
-    for _ in range(T):
-        N, K = int(input[ptr]), int(input[ptr+1])
-        ptr += 2
-        count = [0] * (K + 1)
-        all_ingredients = set()
-        ingredients_list = []
-        for _ in range(N):
-            Pi = int(input[ptr])
-            ptr += 1
-            ings = list(map(int, input[ptr:ptr+Pi]))
-            ptr += Pi
-            ings_set = set(ings)
-            ingredi
+    t = int(input[0])
+    idx = 1
+    for _ in range(t):
+        n = int(input[idx])
+        k = int(input[idx+1])
+        idx += 2
+        
+        # Compute last k digits
+        mod = 10 ** k
+        last_part = pow(n, n, mod)
+        last = f"{last_part:0{k}d}"
+        
+        # Compute first k digits
+        with decimal.localcontext() as ctx:
+            ctx.prec = 50
+            dn = decimal.Decimal(n)
+          
