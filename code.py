@@ -1,22 +1,19 @@
 import sys
 
 def main():
-    sys.setrecursionlimit(1 << 25)
-    n = int(sys.stdin.readline())
-    s = sys.stdin.readline().strip()
-    cow = [False] * (n + 1)
-    for i in range(n):
-        if s[i] == '1':
-            cow[i + 1] = True
-    M = sum(cow)
-    if M == 0:
-        return
-
-    # Build adjacency list
-    adj = [[] for _ in range(n + 1)]
-    for _ in range(n - 1):
-        a, b = map(int, sys.stdin.readline().split())
-        adj[a].append(b)
-        adj[b].append(a)
-
-    # Compute count f
+    N = int(sys.stdin.readline())
+    a = list(map(int, sys.stdin.readline().split()))
+    prefix = [0]
+    for num in a:
+        prefix.append(prefix[-1] + num)
+    
+    all_sums = []
+    for l in range(N):
+        for r in range(l, N):
+            s = prefix[r+1] - prefix[l]
+            all_sums.append((s, l, r))
+    
+    for i in range(N):
+        A = [s for s, l, r in all_sums if l <= i <= r]
+        B1_sums = [s for s, l, r in all_sums if r < i]
+        B2_sums = [s 
