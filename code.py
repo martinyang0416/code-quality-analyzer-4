@@ -1,21 +1,16 @@
+import sys
+from collections import deque
+
 def main():
-    import sys
-    input = sys.stdin.read().splitlines()
-    idx = 0
-    T = int(input[idx])
-    idx += 1
-    for _ in range(T):
-        B = int(input[idx])
-        idx += 1
-        ops = []
-        for _ in range(B):
-            s = input[idx].strip().split()
-            idx += 1
-            if s[0] == 'N':
-                ops.append(('N', None))
-            else:
-                ops.append((s[0], int(s[1])))
-        current = {1}
-        for op in ops:
-            new_set = set()
- 
+    n, m = map(int, sys.stdin.readline().split())
+    grid = [sys.stdin.readline().strip() for _ in range(n)]
+    visited = [[False for _ in range(m)] for _ in range(n)]
+    max_size = 0
+    directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]  # up, down, left, right
+
+    for i in range(n):
+        for j in range(m):
+            if not visited[i][j]:
+                queue = deque()
+                queue.append((i, j))
+                visited[i][j
