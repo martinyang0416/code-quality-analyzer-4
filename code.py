@@ -1,27 +1,17 @@
-def putaway(A, B, T, X, Y, W, S):
-    import sys
+import bisect
 
-    max_x = -float('inf')
-    if A > 0:
-        max_x = max(X)
-    max_y = -float('inf')
-    if B > 0:
-        max_y = max(Y)
-
-    W_only = 0
-    S_only = 0
-    Both = 0
-
-    for i in range(T):
-        w = W[i]
-        s = S[i]
-
-        can_weak = (w < max_x)
-        can_small = (s < max_y)
-
-        if not can_weak and not can_small:
-            return -1
-        if can_weak and can_small:
-            Both += 1
-        elif can_weak:
-            
+def compute_min_time(robots, toys, max_time):
+    robots.sort()
+    toys.sort()
+    counts = [0] * len(robots)
+    for toy in toys:
+        idx = bisect.bisect_right(robots, toy)
+        if idx >= len(robots):
+            return -1  # cannot assign
+        # Find first robot from idx with counts < max_time
+        found = False
+        for i in range(idx, len(robots)):
+            if counts[i] < max_time:
+                counts[i] += 1
+                found = True
+                
