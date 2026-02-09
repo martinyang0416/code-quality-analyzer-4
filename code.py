@@ -1,7 +1,10 @@
-import sys
-from collections import deque
+def rotate_right(s, N):
+    return (s >> 1) | ((s & 1) << (N - 1))
 
 def main():
+    import sys
+    from collections import deque
+
     input = sys.stdin.read().split()
     idx = 0
     T = int(input[idx])
@@ -10,17 +13,14 @@ def main():
     idx += 1
 
     for _ in range(T):
-        light_str = input[idx]
-        switch_str = input[idx+1]
+        L_str = input[idx]
+        S_str = input[idx + 1]
         idx += 2
 
-        # Convert to bitmasks
-        L0 = 0
-        S0 = 0
-        for i in range(N):
-            L0 <<= 1
-            L0 += int(light_str[i])
-            S0 <<= 1
-            S0 += int(switch_str[i])
+        L0 = int(L_str, 2)
+        S0 = int(S_str, 2)
 
-        # Pre
+        visited = set()
+        q = deque()
+        initial_state = (S0, 0)
+        q.append
