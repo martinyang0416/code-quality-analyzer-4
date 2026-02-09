@@ -1,29 +1,16 @@
-import bisect
+import sys
+from bisect import bisect_right
 
 def main():
-    import sys
-    input = sys.stdin.read().split()
-    idx = 0
-    N = int(input[idx])
-    idx += 1
-    Q = int(input[idx])
-    idx += 1
-
-    S = input[idx]
-    idx += 1
-    spec_str = input[idx]
-    idx += 1
-
-    all_L = []
-    all_R = []
-    for i, c in enumerate(S):
-        if c == 'L':
-            all_L.append(i)
-        else:
-            all_R.append(i)
-
-    # Precompute reach array
-    reach = [0] * N
-    for i in range(N):
-        r_i = all_R[i]
-        j = bis
+    sys.setrecursionlimit(1 << 25)
+    t = sys.stdin.readline().strip()
+    N = len(t)
+    U = int(sys.stdin.readline())
+    updates = []
+    for _ in range(U):
+        p, c = sys.stdin.readline().split()
+        p = int(p) - 1  # converting to 0-based index
+        updates.append((p, c))
+    
+    # We need to compute the sum A(t) initially, and then after each update.
+    # To handle this, we can track the current state of the string and c
