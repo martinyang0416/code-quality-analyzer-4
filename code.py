@@ -1,20 +1,23 @@
-class TrieNode:
-    __slots__ = ['children']
-    def __init__(self):
-        self.children = [None, None]  # 0 and 1
+import sys
+import bisect
+from collections import deque
 
-class Trie:
-    def __init__(self, C):
-        self.root = TrieNode()
-        self.C = C
+def main():
+    sys.setrecursionlimit(1 << 25)
+    N = int(sys.stdin.readline())
+    s = sys.stdin.readline().strip()
+    adj = [[] for _ in range(N+1)]
+    for _ in range(N-1):
+        a, b = map(int, sys.stdin.readline().split())
+        adj[a].append(b)
+        adj[b].append(a)
+    
+    cows = []
+    for i in range(N):
+        if s[i] == '1':
+            cows.append(i+1)
+    total_C = len(cows)
+    if total_C == 0:
+        return
 
-    def insert(self, num):
-        node = self.root
-        for i in range(self.C-1, -1, -1):
-            bit = (num >> i) & 1
-            if not node.children[bit]:
-                node.children[bit] = TrieNode()
-            node = node.children[bit]
-
-    def get_max_xor(self, num):
-       
+    # 
