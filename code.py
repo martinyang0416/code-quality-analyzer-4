@@ -1,16 +1,9 @@
-def numberOfSubarrays(nums, k):
-    def at_most(k):
-        count_odds = 0
-        left = 0
-        res = 0
-        for right in range(len(nums)):
-            if nums[right] % 2 == 1:
-                count_odds += 1
-            while count_odds > k:
-                if nums[left] % 2 == 1:
-                    count_odds -= 1
-                left += 1
-            res += right - left + 1
-        return res
-    
-    return at_most(k) - at_most(k - 1)
+def brokenCalc(X, Y):
+    steps = 0
+    while Y > X:
+        if Y % 2:
+            Y += 1
+            steps += 1
+        Y //= 2
+        steps += 1
+    return steps + (X - Y)
