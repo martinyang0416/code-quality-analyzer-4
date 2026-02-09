@@ -1,27 +1,25 @@
-n, k = map(int, input().split())
+import math
 
-type10 = []
-type01 = []
-type11 = []
+a, b, c = map(int, input().split())
 
-for _ in range(n):
-    t, a, b = map(int, input().split())
-    if a == 1 and b == 1:
-        type11.append(t)
-    elif a == 1 and b == 0:
-        type10.append(t)
-    elif a == 0 and b == 1:
-        type01.append(t)
-
-# Sort each type and compute prefix sums
-type10.sort()
-type01.sort()
-type11.sort()
-
-prefix10 = [0]
-for t in type10:
-    prefix10.append(prefix10[-1] + t)
-
-prefix01 = [0]
-for t in type01:
-    prefix01.append(prefi
+if a == 0:
+    if b == 0:
+        if c == 0:
+            print(-1)
+        else:
+            print(0)
+    else:
+        x = -c / b
+        print(1)
+        print("{0:.10f}".format(x))
+else:
+    discriminant = b**2 - 4 * a * c
+    if discriminant < 0:
+        print(0)
+    elif discriminant == 0:
+        x = (-b) / (2 * a)
+        print(1)
+        print("{0:.10f}".format(x))
+    else:
+        sqrt_d = math.sqrt(discriminant)
+        x1 = (-b - sqrt
