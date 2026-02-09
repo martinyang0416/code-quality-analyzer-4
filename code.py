@@ -1,10 +1,16 @@
-def minScoreTriangulation(values):
-    n = len(values)
-    dp = [[0] * n for _ in range(n)]
-    
-    for d in range(2, n):
-        for i in range(n - d):
-            j = i + d
-            dp[i][j] = min(dp[i][k] + dp[k][j] + values[i] * values[k] * values[j] for k in range(i+1, j))
-    
-    return dp[0][n-1]
+import bisect
+
+def minSubArrayLen(s, nums):
+    n = len(nums)
+    if n == 0:
+        return 0
+    prefix = [0]
+    for num in nums:
+        prefix.append(prefix[-1] + num)
+    min_length = float('inf')
+    for i in range(len(prefix)):
+        target = prefix[i] + s
+        j = bisect.bisect_left(prefix, target, i + 1, len(prefix))
+        if j != len(prefix):
+            min_length = min(min_length, j - i)
+    return min_length if min_length != float('inf') else 0
