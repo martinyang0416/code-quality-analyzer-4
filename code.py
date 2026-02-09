@@ -1,19 +1,21 @@
 import sys
-from collections import deque
+import heapq
 
-def main():
-    H, W, K = map(int, sys.stdin.readline().split())
-    grid = []
-    start = None
-    for i in range(H):
-        row = sys.stdin.readline().strip()
-        grid.append(list(row))
-        for j in range(W):
-            if grid[i][j] == 'S':
-                start = (i, j)
-    
-    # Precompute distance to the nearest exit for each cell
-    distance = [[-1] * W for _ in range(H)]
-    q = deque()
-    for i in range(H):
-        for j in range(W)
+def solve():
+    for line in sys.stdin:
+        n = int(line.strip())
+        if n == 0:
+            break
+        islands = []
+        sum_total = 0
+        for _ in range(n):
+            t, c = map(int, sys.stdin.readline().split())
+            islands.append((t, c))
+            sum_total += t
+        
+        possible = False
+        for last_idx in range(n):
+            last_t, last_c = islands[last_idx]
+            if last_c < sum_total:
+                continue
+   
