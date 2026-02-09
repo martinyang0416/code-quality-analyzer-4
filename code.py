@@ -1,18 +1,23 @@
-def putaway(A, B, T, X, Y, W, S):
-    # Compute maximums for X and Y arrays
-    X_max = max(X) if A > 0 else 0
-    Y_max = max(Y) if B > 0 else 0
+import math
 
-    C1 = 0  # toys handled only by weak
-    C2 = 0  # toys handled only by small
-    C3 = 0  # toys handled by either
+def putaway(A, B, T, X, Y, W, S):
+    # Compute max X and Y
+    if A > 0:
+        maxX = max(X)
+    else:
+        maxX = -1
+    if B > 0:
+        maxY = max(Y)
+    else:
+        maxY = -1
+
+    O_w = 0  # toys that can only go to weak
+    O_s = 0  # toys that can only go to small
+    B_other = 0  # toys that can go to either
 
     for i in range(T):
         w = W[i]
         s = S[i]
-        can_weak = (A > 0) and (w < X_max)
-        can_small = (B > 0) and (s < Y_max)
-        if can_weak and can_small:
-            C3 += 1
-        elif can_weak:
-            
+        can_weak = (A > 0 and w < maxX)
+        can_small = (B > 0 and s < maxY)
+        if not can_wea
