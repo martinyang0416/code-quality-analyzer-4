@@ -1,21 +1,23 @@
-import sys
+import bisect
 
-def main():
-    A, B, T = map(int, sys.stdin.readline().split())
-    X = list(map(int, sys.stdin.readline().split())) if A > 0 else []
-    Y = list(map(int, sys.stdin.readline().split())) if B > 0 else []
-    W = []
-    S = []
-    for _ in range(T):
-        w, s = map(int, sys.stdin.readline().split())
-        W.append(w)
-        S.append(s)
-    
-    max_X = max(X) if A else 0
-    max_Y = max(Y) if B else 0
+def putaway(A, B, T, X, Y, W, S):
+    X_sorted = sorted(X)
+    Y_sorted = sorted(Y)
     
     W_only = 0
     S_only = 0
     Both = 0
     
-    for w, s in zip(W, S
+    for i in range(T):
+        wi = W[i]
+        si = S[i]
+        
+        is_weak = bisect.bisect_right(X_sorted, wi) < len(X_sorted)
+        is_small = bisect.bisect_right(Y_sorted, si) < len(Y_sorted)
+        
+        if not (is_weak or is_small):
+            return -1
+        
+        if is_weak and is_small:
+            Both += 1
+        el
