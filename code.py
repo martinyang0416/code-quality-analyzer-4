@@ -1,27 +1,11 @@
-import bisect
+n = int(input())
+s = input().strip()
 
-def main():
-    import sys
-    input = sys.stdin.read().split()
-    ptr = 0
-    T = int(input[ptr])
-    ptr += 1
-    all_sequences = [
-        [],
-        ['R'],
-        ['Y'],
-        ['R', 'R'],
-        ['R', 'Y'],
-        ['Y', 'R'],
-        ['R', 'R', 'Y'],
-        ['R', 'Y', 'R'],
-        ['Y', 'R', 'R']
-    ]
-    
-    for _ in range(T):
-        n = int(input[ptr])
-        p = int(input[ptr+1])
-        ptr +=2
-        m = list(map(int, input[ptr:ptr+n]))
-        ptr +=n
-     
+# Iterate through each possible position to find the first instance where s[i] < s[i+1]
+for i in range(n - 1):
+    if s[i] < s[i+1]:
+        print(s[:i] + s[i+1:])
+        exit()
+
+# If no such position found, remove the last character
+print(s[:-1])
